@@ -540,6 +540,11 @@ tbody tr:last-child td { border-bottom: none; }
   </div>
 
   <div class="sb-group">
+    <span class="sb-label">Konten</span>
+    <div class="sb-item" onclick="go('seo',this)">SEO &amp; GEO Artikel <span class="sb-chip" style="background:var(--gr)">New</span></div>
+  </div>
+
+  <div class="sb-group">
     <span class="sb-label">AI Tools</span>
     <div class="sb-item" onclick="go('tips',this)">Tips &amp; Trik AI <span class="sb-chip" style="background:var(--bl)">AI</span></div>
   </div>
@@ -1334,6 +1339,281 @@ Analisis dan buat daftar:
   <div class="card cy" style="margin-top:24px">
     <span class="clabel" style="color:oklch(38% 0.16 85)">Catatan Penting</span>
     <p>AI tidak bisa akses langsung ke akun Google Ads kamu. Semua analisis dilakukan dengan cara <strong>paste data</strong> ke Claude/OpenCode. Untuk otomasi penuh (baca data langsung dari API), perlu setup tambahan via n8n atau script Python — bisa dikonsultasikan terpisah.</p>
+  </div>
+</section>
+
+<!-- ═════════════════════════════ SEO & GEO ══════════════════════ -->
+<section class="sec" id="s-seo">
+  <div class="ph">
+    <div class="ph-eye">Konten — 01</div>
+    <h1>SEO &amp; GEO Artikel: Page 1</h1>
+    <p class="lead">Dua medan perang berbeda, satu tujuan: muncul di halaman pertama. SEO menargetkan 10 blue links klasik. GEO menargetkan AI Overviews, ChatGPT, dan Perplexity — yang sekarang diklik lebih banyak orang.</p>
+  </div>
+
+  <div class="callout co-gr">
+    <span><strong>Kenapa keduanya penting sekarang:</strong> Di 2025, ~30% pencarian Google tidak menghasilkan klik ke website — jawabannya sudah muncul di AI Overview. Kalau konten Badr tidak muncul di sana, traffic organik bisa stagnan meski ranking #1. SEO dan GEO bukan kompetisi — konten yang bagus untuk GEO hampir selalu bagus untuk SEO juga.</span>
+  </div>
+
+  <!-- PERBEDAAN SEO vs GEO -->
+  <h2 class="sh"><span class="sh-badge" style="background:oklch(38% 0.15 155)">01</span> SEO vs GEO: Beda Arena, Beda Aturan</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Dimensi</th><th>SEO Klasik</th><th>GEO (Generative Engine)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Target</strong></td><td>Google 10 blue links</td><td>AI Overview, ChatGPT Search, Perplexity, Gemini</td></tr>
+        <tr><td><strong>Algoritma</strong></td><td>PageRank, backlinks, on-page signals</td><td>LLM retrieval: authority, structure, factual density</td></tr>
+        <tr><td><strong>Format konten ideal</strong></td><td>Long-form, keyword density, heading hierarchy</td><td>Direct answer, Q&amp;A, definisi jelas, data terverifikasi</td></tr>
+        <tr><td><strong>Cara diukur</strong></td><td>Organic ranking, CTR, traffic</td><td>Brand mention di AI response, zero-click visibility</td></tr>
+        <tr><td><strong>Timeline hasil</strong></td><td>3–6 bulan</td><td>2–8 minggu (AI index lebih cepat)</td></tr>
+        <tr><td><strong>E-E-A-T sinyal</strong></td><td>Backlinks, author bio, domain authority</td><td>Kutipan, statistik, nama expert, tanggal update</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SEO -->
+  <h2 class="sh" style="margin-top:40px"><span class="sh-badge" style="background:var(--bl)">SEO</span> Teknis Artikel untuk Page 1 Google</h2>
+
+  <h3 class="subh">Step 1 — Keyword Research yang Benar</h3>
+  <div class="steps">
+    <div class="step"><div class="sn" style="background:var(--bl-l);color:var(--bl)">1</div><div class="sb">
+      <h4>Tentukan Search Intent dulu, keyword belakangan</h4>
+      <p>Ada 4 tipe: <strong>Informational</strong> (cara, panduan, apa itu), <strong>Navigational</strong> (cari brand spesifik), <strong>Commercial</strong> (perbandingan, rekomendasi, terbaik), <strong>Transactional</strong> (beli, hire, jasa). Satu artikel harus melayani satu intent saja — jangan campur.</p>
+    </div></div>
+    <div class="step"><div class="sn" style="background:var(--bl-l);color:var(--bl)">2</div><div class="sb">
+      <h4>Struktur keyword: 1 primary + 3–5 secondary + LSI</h4>
+      <p>Primary keyword masuk di: title tag, H1, paragraph pertama, URL, meta description. Secondary keywords masuk di H2/H3. LSI (Latent Semantic Indexing) — kata terkait yang Google ekspektasi ada — tersebar natural di body copy.</p>
+    </div></div>
+    <div class="step"><div class="sn" style="background:var(--bl-l);color:var(--bl)">3</div><div class="sb">
+      <h4>Prioritas: Search Volume × Difficulty terbalik</h4>
+      <p>Target keyword dengan volume 200–2.000/bulan dan KD (Keyword Difficulty) di bawah 40 dulu. Artikel baru domain authority rendah tidak akan menang lawan domain besar di keyword volume tinggi.</p>
+    </div></div>
+  </div>
+
+  <h3 class="subh">Step 2 — Struktur Artikel yang Google Suka</h3>
+  <div class="g2" style="gap:12px">
+    <div class="card cb">
+      <span class="clabel">Anatomi Wajib Satu Artikel</span>
+      <ul>
+        <li><strong>Title tag:</strong> 50–60 karakter, keyword di depan, ada hook (angka / tahun / "terbaik")</li>
+        <li><strong>Meta description:</strong> 120–155 karakter, ada CTA, rangkum nilai artikel</li>
+        <li><strong>H1:</strong> satu per artikel, identik atau sangat dekat dengan title tag</li>
+        <li><strong>H2–H3:</strong> gunakan keyword secondary dan pertanyaan yang user tanyakan</li>
+        <li><strong>Paragraf pertama:</strong> jawab isi artikel dalam 2–3 kalimat. Google baca ini dulu.</li>
+        <li><strong>Internal link:</strong> minimal 3 ke artikel lain yang relevan</li>
+        <li><strong>CTA:</strong> satu per artikel, relevan dengan intent</li>
+      </ul>
+    </div>
+    <div class="card cb">
+      <span class="clabel">Sinyal E-E-A-T yang Wajib Ada</span>
+      <ul>
+        <li><strong>Author byline:</strong> nama penulis + jabatan + bio singkat (2 kalimat)</li>
+        <li><strong>Tanggal publish + update:</strong> Google menghargai konten yang dirawat</li>
+        <li><strong>Data &amp; statistik:</strong> kutip sumber terpercaya (BPS, Gartner, IDC) dengan link</li>
+        <li><strong>Pengalaman langsung:</strong> case study, angka proyek Badr, hasil nyata</li>
+        <li><strong>Schema Markup:</strong> Article, FAQ, HowTo — pasang di setiap artikel</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="subh">Step 3 — Panjang &amp; Kedalaman Konten</h3>
+  <div class="kpis">
+    <div class="kpi" style="border-color:var(--bl)"><div class="kv">1.500+</div><div class="kl">kata minimum artikel informational</div></div>
+    <div class="kpi" style="border-color:var(--bl)"><div class="kv">2.500+</div><div class="kl">kata untuk target featured snippet</div></div>
+    <div class="kpi" style="border-color:var(--bl)"><div class="kv">&lt; 3 dtk</div><div class="kl">target page load speed (Core Web Vitals)</div></div>
+    <div class="kpi" style="border-color:var(--bl)"><div class="kv">1x/3 bln</div><div class="kl">frekuensi update artikel lama</div></div>
+  </div>
+
+  <h3 class="subh">Keyword Target Badr Interactive (Contoh)</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Keyword</th><th>Intent</th><th>Tipe Artikel</th><th>Priority</th></tr></thead>
+      <tbody>
+        <tr><td>jasa pembuatan software enterprise Jakarta</td><td>Transactional</td><td>Landing page / service page</td><td class="mono" style="color:var(--rd)">Tinggi</td></tr>
+        <tr><td>cara memilih vendor software development Indonesia</td><td>Commercial</td><td>Panduan perbandingan</td><td class="mono" style="color:var(--rd)">Tinggi</td></tr>
+        <tr><td>berapa biaya pembuatan aplikasi enterprise</td><td>Commercial</td><td>Artikel harga + faktor penentu</td><td class="mono" style="color:var(--or)">Medium</td></tr>
+        <tr><td>perbedaan custom software vs off-the-shelf</td><td>Informational</td><td>Artikel perbandingan mendalam</td><td class="mono" style="color:var(--or)">Medium</td></tr>
+        <tr><td>apa itu ERP system untuk perusahaan</td><td>Informational</td><td>Artikel definisi + use case</td><td class="mono" style="color:var(--gr)">Entry</td></tr>
+        <tr><td>software house terpercaya Indonesia</td><td>Commercial</td><td>Artikel "terbaik" + posisikan Badr</td><td class="mono" style="color:var(--rd)">Tinggi</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- GEO -->
+  <h2 class="sh" style="margin-top:48px"><span class="sh-badge" style="background:var(--or)">GEO</span> Generative Engine Optimization — Muncul di AI</h2>
+
+  <div class="callout co-or">
+    <span><strong>GEO bukan trend — ini sudah sekarang.</strong> Google AI Overview muncul di &gt;50% pencarian. ChatGPT punya Search. Perplexity dipakai ratusan juta user. Kalau seseorang tanya AI <em>"siapa software house enterprise terpercaya di Indonesia?"</em> dan Badr tidak disebut — kamu kalah sebelum iklan ditampilkan.</span>
+  </div>
+
+  <h3 class="subh">Bagaimana AI Memilih Sumber yang Dikutip</h3>
+  <div class="g3">
+    <div class="card co">
+      <span class="clabel">Struktur &amp; Kejelasan</span>
+      <p>AI suka konten yang bisa di-parse dengan mudah: heading yang jelas, bullet points, definisi yang langsung ke inti. Paragraf panjang tanpa struktur jarang dikutip.</p>
+    </div>
+    <div class="card co">
+      <span class="clabel">Authoritative &amp; Factual</span>
+      <p>AI mengutamakan sumber yang menyebut angka spesifik, nama perusahaan nyata, dan statistik berumur baru. Klaim tanpa bukti diabaikan. Badr punya modal ini: 350+ proyek, 11 tahun, klien BUMN.</p>
+    </div>
+    <div class="card co">
+      <span class="clabel">Format Direct Answer</span>
+      <p>AI mencari teks yang bisa langsung dijadikan jawaban. Gunakan format: <em>"[Keyword] adalah... [definisi singkat dalam satu kalimat]."</em> Ini yang paling sering muncul di AI Overview.</p>
+    </div>
+  </div>
+
+  <h3 class="subh">7 Taktik GEO Konkret</h3>
+  <div class="steps">
+    <div class="step"><div class="sn" style="background:var(--or-l);color:var(--or)">1</div><div class="sb">
+      <h4>Tambahkan FAQ section di setiap artikel</h4>
+      <p>Format pertanyaan yang orang benar-benar tanyakan ke AI: <em>"Berapa lama pengembangan software enterprise?"</em>, <em>"Apa bedanya software house dan konsultan IT?"</em>. Jawab dalam 2–4 kalimat padat. Pasang schema FAQ markup. Ini adalah jalur paling langsung masuk ke AI Overview.</p>
+    </div></div>
+    <div class="step"><div class="sn" style="background:var(--or-l);color:var(--or)">2</div><div class="sb">
+      <h4>Definisikan entitas Badr Interactive dengan jelas</h4>
+      <p>Di setiap artikel Badr, ada satu paragraf yang mendefinisikan siapa Badr: <em>"Badr Interactive adalah software house enterprise asal Indonesia, berdiri 2013, telah menyelesaikan 350+ proyek untuk klien seperti Pertamina, Astra, BPOM, dan Kementerian Keuangan."</em> AI belajar dari pengulangan entitas ini.</p>
+    </div></div>
+    <div class="step"><div class="sn" style="background:var(--or-l);color:var(--or)">3</div><div class="sb">
+      <h4>Gunakan data yang bisa dikutip</h4>
+      <p>Statistik dari sumber primer: <em>"Menurut Gartner (2024), 73% perusahaan enterprise yang gagal implementasi ERP disebabkan pemilihan vendor yang tidak tepat."</em> AI lebih sering mengutip konten yang mereferensi sumber eksternal — bukan hanya klaim internal.</p>
+    </div></div>
+    <div class="step"><div class="sn" style="background:var(--or-l);color:var(--or)">4</div><div class="sb">
+      <h4>Target long-tail conversational queries</h4>
+      <p>Orang tanya ke AI dengan kalimat lengkap, bukan keyword pendek. Target: <em>"kenapa perusahaan besar butuh custom software?"</em>, <em>"kapan sebaiknya perusahaan invest di ERP?"</em>, <em>"apa risiko pakai software off-the-shelf untuk bisnis skala enterprise?"</em></p>
+    </div></div>
+    <div class="step"><div class="sn" style="background:var(--or-l);color:var(--or)">5</div><div class="sb">
+      <h4>Bangun topik cluster, bukan artikel terpisah</h4>
+      <p>Satu <strong>pillar page</strong> (panjang, comprehensive) + 6–10 <strong>cluster articles</strong> (lebih spesifik, link ke pillar). Contoh pillar: <em>"Panduan Lengkap Custom Software Enterprise."</em> Cluster: masing-masing membahas satu subtopik — ERP, integrasi API, estimasi biaya, timeline, dll. AI mengenali topical authority dari cluster ini.</p>
+    </div></div>
+    <div class="step"><div class="sn" style="background:var(--or-l);color:var(--or)">6</div><div class="sb">
+      <h4>Schema Markup: Article + FAQ + Organization</h4>
+      <p>Tiga schema wajib: <code style="background:var(--or-l);padding:1px 5px;border-radius:3px">Article</code> (author, datePublished, dateModified), <code style="background:var(--or-l);padding:1px 5px;border-radius:3px">FAQPage</code> (semua Q&amp;A), <code style="background:var(--or-l);padding:1px 5px;border-radius:3px">Organization</code> (nama, URL, logo, deskripsi Badr). Schema bukan langsung naikkan ranking tapi memperkuat sinyal untuk AI parsing.</p>
+    </div></div>
+    <div class="step"><div class="sn" style="background:var(--or-l);color:var(--or)">7</div><div class="sb">
+      <h4>Update artikel secara berkala — AI perhatikan ini</h4>
+      <p>Tambahkan tanggal "Last updated" yang terlihat. Revisi statistik lama. Tambah section baru kalau industri berubah. AI dan Google sama-sama memprioritaskan konten yang terawat atas konten yang dibuat sekali dan dibiarkan.</p>
+    </div></div>
+  </div>
+
+  <!-- CONTENT CALENDAR -->
+  <h2 class="sh" style="margin-top:48px"><span class="sh-badge" style="background:oklch(40% 0.14 290)">Plan</span> Content Calendar: 3 Bulan Pertama</h2>
+
+  <div class="callout co-bl">
+    <span><strong>Prinsip:</strong> Mulai dari artikel yang paling dekat ke transactional intent — karena langsung support leads ads. Baru naik ke informational untuk bangun topical authority.</span>
+  </div>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Bulan</th><th>Fokus</th><th>Artikel yang Dibuat</th><th>Target</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Bulan 1</strong></td>
+          <td>Foundation + Transactional</td>
+          <td>
+            1. Jasa Pembuatan Software Enterprise di Indonesia (pillar)<br>
+            2. Berapa Biaya Pembuatan Aplikasi Enterprise? (harga guide)<br>
+            3. Badr Interactive: Portfolio &amp; Case Study (social proof page)
+          </td>
+          <td>Index + mulai ranking long-tail</td>
+        </tr>
+        <tr>
+          <td><strong>Bulan 2</strong></td>
+          <td>Commercial + Comparison</td>
+          <td>
+            4. Custom Software vs Off-the-Shelf: Mana yang Tepat?<br>
+            5. Cara Memilih Vendor Software Development yang Tepat<br>
+            6. 10 Tanda Perusahaan Kamu Butuh Custom ERP
+          </td>
+          <td>Mulai muncul di AI Overview untuk comparison queries</td>
+        </tr>
+        <tr>
+          <td><strong>Bulan 3</strong></td>
+          <td>Informational + Authority</td>
+          <td>
+            7. Apa itu Digital Transformation? Panduan untuk Perusahaan<br>
+            8. Studi Kasus: Implementasi ERP di Perusahaan Logistik 2.000 Karyawan<br>
+            9. Checklist RFP Software Development untuk Tim IT Manager
+          </td>
+          <td>Topical authority, GEO brand mention, referral traffic dari artikel ke landing page</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TEMPLATE ARTIKEL -->
+  <h2 class="sh" style="margin-top:40px"><span class="sh-badge" style="background:var(--gr)">Template</span> Struktur Artikel SEO+GEO Ready</h2>
+  <div class="terminal">
+    <div class="t-bar"><div class="d"></div><div class="d"></div><div class="d"></div></div>
+    <div class="t-code"><span class="ck"># Template: Artikel SEO + GEO (2.000–3.000 kata)</span>
+
+<span class="cv">## [TITLE TAG — 50–60 karakter, keyword di depan]</span>
+Contoh: "Jasa Software Enterprise Terpercaya | Badr Interactive"
+
+<span class="cv">## Meta Description (120–155 karakter):</span>
+Ringkasan manfaat + CTA. Bukan deskripsi isi artikel.
+
+<span class="cv">## Struktur Artikel:</span>
+H1: [Primary Keyword] — identik/sangat mirip title tag
+  └ Paragraph 1: jawab pertanyaan utama dalam 2–3 kalimat (GEO: direct answer)
+  └ [Definisi entitas Badr jika relevan]
+
+H2: [Subtopik 1 — Secondary keyword]
+  └ Isi + data/statistik + sumber
+  └ Internal link ke artikel terkait
+
+H2: [Subtopik 2]
+  ...
+
+H2: FAQ — Pertanyaan yang Sering Diajukan
+  └ Q: [Pertanyaan conversational]
+  └ A: [Jawaban 2–4 kalimat, langsung ke inti]
+  └ (minimal 3–5 pasang Q&amp;A per artikel)
+
+H2: Kesimpulan + CTA
+  └ Rangkum 3 poin utama
+  └ CTA: Konsultasi gratis / Lihat portfolio / Hubungi tim Badr
+
+<span class="cv">## Schema yang dipasang:</span>
+- Article (author, datePublished, dateModified)
+- FAQPage (semua Q&amp;A di atas)
+- BreadcrumbList</div>
+  </div>
+
+  <!-- PROMPT AI untuk artikel -->
+  <h2 class="sh" style="margin-top:40px"><span class="sh-badge" style="background:var(--bl)">Prompt</span> Buat Artikel dengan Claude</h2>
+  <div class="terminal">
+    <div class="t-bar"><div class="d"></div><div class="d"></div><div class="d"></div></div>
+    <div class="t-code"><span class="ck">Prompt:</span>
+Tulis artikel SEO untuk Badr Interactive dengan spesifikasi berikut:
+
+<span class="cv">Keyword utama:</span> [primary keyword]
+<span class="cv">Secondary keywords:</span> [list 3–5]
+<span class="cv">Search intent:</span> [informational / commercial / transactional]
+<span class="cv">Target pembaca:</span> IT Manager / CTO perusahaan 200+ karyawan
+
+<span class="cv">Tentang Badr Interactive:</span>
+Software house enterprise Indonesia, berdiri 2013, 350+ proyek,
+klien: Pertamina, Astra, BPOM, Kementerian Keuangan.
+Website: badr.co.id
+
+Tulis artikel 2.000–2.500 kata dengan struktur:
+1. H1 mengandung keyword utama
+2. Paragraph pertama langsung jawab inti pertanyaan (untuk GEO/AI Overview)
+3. H2 untuk setiap subtopik utama mengandung secondary keyword
+4. Section FAQ dengan 5 pertanyaan conversational + jawaban padat
+5. Kesimpulan + CTA ke konsultasi gratis Badr
+
+Rules:
+- Tone: profesional tapi tidak kaku
+- Sebutkan angka dan data spesifik di mana relevan
+- Masukkan mention Badr Interactive secara natural (bukan hard sell)
+- Definisikan entitas Badr di paragraph 2–3 artikel
+- Akhir artikel ada satu paragraf CTA yang tidak agresif</div>
+  </div>
+
+  <div class="kpis" style="margin-top:32px">
+    <div class="kpi" style="border-color:var(--gr)"><div class="kv">9 artikel</div><div class="kl">target 3 bulan pertama</div></div>
+    <div class="kpi" style="border-color:var(--bl)"><div class="kv">1 pillar</div><div class="kl">+ 8 cluster per topik utama</div></div>
+    <div class="kpi" style="border-color:var(--or)"><div class="kv">100%</div><div class="kl">artikel punya FAQ + Schema markup</div></div>
+    <div class="kpi" style="border-color:oklch(40% 0.14 290)"><div class="kv">1x/3 bln</div><div class="kl">update artikel lama</div></div>
   </div>
 </section>
 
