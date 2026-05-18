@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads Playbook — Badr Interactive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        oklch(12% 0.014 260);
+  --surface:   oklch(15% 0.014 260);
+  --raised:    oklch(18% 0.013 260);
+  --overlay:   oklch(22% 0.013 260);
+  --border:    oklch(26% 0.012 260);
+  --border-hi: oklch(32% 0.014 260);
+  --text:      oklch(90% 0.008 260);
+  --text-2:    oklch(72% 0.01  260);
+  --text-3:    oklch(52% 0.01  260);
+  --green:     oklch(72% 0.165 155);
+  --green-dim: oklch(72% 0.165 155 / 0.12);
+  --green-dim2:oklch(72% 0.165 155 / 0.06);
+  --blue:      oklch(68% 0.17  240);
+  --blue-dim:  oklch(68% 0.17  240 / 0.12);
+  --amber:     oklch(76% 0.175 65);
+  --amber-dim: oklch(76% 0.175 65  / 0.12);
+  --red:       oklch(62% 0.22  25);
+  --red-dim:   oklch(62% 0.22  25  / 0.12);
+  --sidebar-w: 256px;
+  --radius:    10px;
+  --radius-sm: 6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 14px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  display: flex;
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── SIDEBAR ─────────────────────────────────────────────── */
+#sidebar {
+  width: var(--sidebar-w);
+  background: var(--surface);
+  position: fixed;
+  top: 0; left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.sidebar-header {
+  padding: 22px 18px 18px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.sidebar-header .brand-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+.sidebar-header .playbook-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+.sidebar-header .playbook-sub {
+  font-size: 11px;
+  color: var(--text-3);
+  margin-top: 3px;
+}
+
+.nav-group { padding: 18px 10px 4px; }
+.nav-group-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding: 0 10px 10px;
+  display: block;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  transition: background 150ms ease-out, color 150ms ease-out;
+  user-select: none;
+  position: relative;
+}
+.nav-link:hover { background: oklch(100% 0 0 / 0.04); color: var(--text); }
+.nav-link.active {
+  background: var(--green-dim);
+  color: var(--green);
+}
+.nav-link .nav-icon { font-size: 14px; width: 18px; text-align: center; flex-shrink: 0; }
+.nav-link .nav-chip {
+  margin-left: auto;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 20px;
+  background: var(--green);
+  color: oklch(12% 0.014 260);
+  letter-spacing: 0.3px;
+}
+
+/* ─── MAIN ────────────────────────────────────────────────── */
+#main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  padding: 40px 48px;
+  max-width: calc(var(--sidebar-w) + 860px);
+}
+
+/* ─── SECTIONS ────────────────────────────────────────────── */
+.section {
+  display: none;
+  animation: fadeUp 220ms ease-out;
+}
+.section.active { display: block; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── PAGE HEADER ─────────────────────────────────────────── */
+.page-header { margin-bottom: 40px; }
+.page-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+.page-header .lead {
+  font-size: 14px;
+  color: var(--text-2);
+  margin-top: 10px;
+  max-width: 580px;
+  line-height: 1.7;
+}
+
+/* ─── SECTION HEADINGS ────────────────────────────────────── */
+h2.sh {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 40px 0 16px;
+  letter-spacing: -0.2px;
+}
+h2.sh .sh-num {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green);
+  font-family: 'JetBrains Mono', monospace;
+  margin-right: 10px;
+}
+h3.subh {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 24px 0 10px;
+  letter-spacing: 0.1px;
+}
+
+hr.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 32px 0;
+}
+
+/* ─── CARDS ───────────────────────────────────────────────── */
+.card {
+  background: var(--raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin-bottom: 14px;
+}
+.card.c-green { border-color: oklch(72% 0.165 155 / 0.35); background: var(--green-dim2); }
+.card.c-amber { border-color: oklch(76% 0.175 65 / 0.35); background: oklch(76% 0.175 65 / 0.05); }
+.card.c-red   { border-color: oklch(62% 0.22 25 / 0.35);  background: oklch(62% 0.22 25 / 0.05); }
+.card.c-blue  { border-color: oklch(68% 0.17 240 / 0.35); background: oklch(68% 0.17 240 / 0.05); }
+
+.card .card-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.card.c-green .card-label { color: var(--green); }
+.card.c-amber .card-label { color: var(--amber); }
+.card.c-red   .card-label { color: var(--red); }
+.card.c-blue  .card-label { color: var(--blue); }
+.card .card-label:not(:only-child) { margin-bottom: 10px; }
+
+.card p, .card li {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.75;
+}
+.card ul { padding-left: 16px; }
+.card strong { color: var(--text); font-weight: 600; }
+
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+
+/* ─── CALLOUT ─────────────────────────────────────────────── */
+.callout {
+  display: flex;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.callout-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.callout.co-green {
+  background: var(--green-dim);
+  color: oklch(80% 0.12 155);
+  outline: 1px solid oklch(72% 0.165 155 / 0.2);
+}
+.callout.co-amber {
+  background: var(--amber-dim);
+  color: oklch(82% 0.13 65);
+  outline: 1px solid oklch(76% 0.175 65 / 0.2);
+}
+.callout.co-red {
+  background: var(--red-dim);
+  color: oklch(75% 0.16 25);
+  outline: 1px solid oklch(62% 0.22 25 / 0.2);
+}
+.callout strong { color: inherit; font-weight: 700; }
+
+/* ─── STEPS ───────────────────────────────────────────────── */
+.steps { display: flex; flex-direction: column; gap: 2px; }
+.step {
+  display: flex;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  position: relative;
+}
+.step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 33px;
+  bottom: -10px;
+  width: 1px;
+  height: 10px;
+  background: var(--border);
+}
+.step-n {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--green-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--green);
+  margin-top: 1px;
+}
+.step-body h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 5px;
+}
+.step-body p, .step-body li {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.7;
+}
+.step-body ul { padding-left: 16px; margin-top: 4px; }
+.step-body strong { color: var(--text); font-weight: 600; }
+
+/* ─── TABLE ───────────────────────────────────────────────── */
+.tbl-wrap { overflow-x: auto; margin-bottom: 16px; border-radius: var(--radius); outline: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead th {
+  background: var(--overlay);
+  color: var(--text-2);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 11px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+tbody tr { transition: background 100ms ease-out; }
+tbody tr:nth-child(even) { background: oklch(100% 0 0 / 0.015); }
+tbody tr:hover { background: oklch(100% 0 0 / 0.03); }
+tbody td {
+  padding: 11px 16px;
+  border-bottom: 1px solid oklch(26% 0.012 260 / 0.5);
+  color: var(--text-2);
+  vertical-align: top;
+  line-height: 1.6;
+}
+tbody tr:last-child td { border-bottom: none; }
+.tc-main { color: var(--text); font-weight: 600; }
+.tc-good { color: var(--green); font-weight: 600; }
+.tc-bad  { color: var(--red);   font-weight: 600; }
+.tc-warn { color: var(--amber); font-weight: 600; }
+.tc-blue { color: var(--blue);  font-weight: 600; }
+
+/* ─── TAGS ────────────────────────────────────────────────── */
+.tag {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  margin: 2px 2px 2px 0;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.2px;
+}
+.tg { background: var(--green-dim); color: oklch(78% 0.14 155); }
+.tr { background: var(--red-dim);   color: oklch(72% 0.18 25); }
+.tb { background: var(--blue-dim);  color: oklch(74% 0.14 240); }
+.ta { background: var(--amber-dim); color: oklch(80% 0.15 65); }
+
+/* ─── KPI STRIP ───────────────────────────────────────────── */
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 24px;
+  outline: 1px solid var(--border);
+}
+.kpi-cell {
+  background: var(--raised);
+  padding: 16px 14px;
+  text-align: center;
+}
+.kpi-cell .kpi-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  display: block;
+  margin-bottom: 8px;
+}
+.kpi-cell .kpi-val {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  display: block;
+  letter-spacing: -0.5px;
+}
+.kpi-cell .kpi-target {
+  font-size: 10px;
+  color: var(--green);
+  display: block;
+  margin-top: 4px;
+}
+
+/* ─── FUNNEL ──────────────────────────────────────────────── */
+.funnel { display: flex; flex-direction: column; gap: 3px; margin: 16px 0 24px; }
+.funnel-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  outline: 1px solid var(--border);
+}
+.funnel-bar {
+  width: 6px;
+  flex-shrink: 0;
+}
+.funnel-body {
+  flex: 1;
+  padding: 16px 20px;
+  background: var(--raised);
+}
+.funnel-body h4 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.funnel-body p { font-size: 12px; color: var(--text-2); line-height: 1.6; }
+.funnel-body .funnel-meta { font-size: 11px; color: var(--text-3); margin-top: 6px; }
+.funnel-alloc {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  background: var(--overlay);
+  padding: 12px 8px;
+  gap: 2px;
+}
+.funnel-alloc .pct { font-size: 18px; font-weight: 800; font-family: 'JetBrains Mono', monospace; }
+.funnel-alloc .pct-label { font-size: 9px; color: var(--text-3); font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; }
+
+.f-tofu .funnel-bar   { background: var(--blue); }
+.f-tofu .funnel-body h4 { color: var(--blue); }
+.f-tofu .funnel-alloc .pct { color: var(--blue); }
+.f-mofu .funnel-bar   { background: var(--amber); }
+.f-mofu .funnel-body h4 { color: var(--amber); }
+.f-mofu .funnel-alloc .pct { color: var(--amber); }
+.f-bofu .funnel-bar   { background: var(--green); }
+.f-bofu .funnel-body h4 { color: var(--green); }
+.f-bofu .funnel-alloc .pct { color: var(--green); }
+
+/* ─── CODE ────────────────────────────────────────────────── */
+.terminal {
+  background: oklch(9% 0.01 260);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin: 12px 0;
+  overflow: hidden;
+}
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: oklch(17% 0.012 260);
+  border-bottom: 1px solid var(--border);
+}
+.terminal-bar .dot {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.terminal-bar .dot:nth-child(1) { background: oklch(58% 0.22 25); }
+.terminal-bar .dot:nth-child(2) { background: oklch(72% 0.18 75); }
+.terminal-bar .dot:nth-child(3) { background: oklch(72% 0.18 145); }
+.terminal-code {
+  padding: 18px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 2;
+  color: oklch(76% 0.05 260);
+  overflow-x: auto;
+  white-space: pre;
+}
+.terminal-code .ck { color: oklch(72% 0.165 155); }  /* green — structure */
+.terminal-code .cv { color: oklch(75% 0.17 230); }   /* blue — values */
+.terminal-code .cc { color: oklch(68% 0.22 25); }    /* red — remove */
+.terminal-code .cm { color: oklch(58% 0.01 260); }   /* comment */
+
+/* ─── CHECKLIST ───────────────────────────────────────────── */
+.check-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; }
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color 150ms ease-out, background 150ms ease-out;
+  user-select: none;
+}
+.check-item:hover { border-color: var(--border-hi); }
+.check-item.done { opacity: 0.45; }
+.check-item.done .ci-label { text-decoration: line-through; }
+.check-box {
+  width: 18px; height: 18px;
+  border-radius: 4px;
+  border: 1.5px solid var(--border-hi);
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 150ms ease-out, border-color 150ms ease-out;
+  background: transparent;
+}
+.check-item.done .check-box {
+  background: var(--green);
+  border-color: var(--green);
+}
+.check-box svg { display: none; }
+.check-item.done .check-box svg { display: block; }
+.ci-label {
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 500;
+  line-height: 1.5;
+}
+.ci-sub {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 3px;
+  line-height: 1.5;
+}
+
+/* ─── MISC ────────────────────────────────────────────────── */
+.text-green { color: var(--green); }
+.text-red   { color: var(--red); }
+.text-amber { color: var(--amber); }
+.text-blue  { color: var(--blue); }
+.fw7  { font-weight: 700; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.mt0  { margin-top: 0 !important; }
+.mb0  { margin-bottom: 0 !important; }
+
+/* ─── SCROLLBAR ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ─── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  #sidebar { transform: translateX(-100%); }
+  #main { margin-left: 0; padding: 20px; }
+  .kpi-strip { grid-template-columns: repeat(3, 1fr); }
+  .g2, .g3 { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ SIDEBAR ═══════════════════════════════════════════════════════════ -->
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <div class="brand-label">Badr Interactive</div>
+    <div class="playbook-name">Google Ads Playbook</div>
+    <div class="playbook-sub">High-Ticket Lead Generation</div>
+  </div>
+
+  <div class="nav-group">
+    <span class="nav-group-label">Fondasi</span>
+    <div class="nav-link active" onclick="go('mindset',this)">
+      <span class="nav-icon">🧠</span> Mindset B2B Ads
+    </div>
+    <div class="nav-link" onclick="go('struktur',this)">
+      <span class="nav-icon">🏗️</span> Struktur Kampanye
+    </div>
+  </div>
+
+  <div class="nav-group">
+    <span class="nav-group-label">Setup Step-by-Step</span>
+    <div class="nav-link" onclick="go('setup',this)">
+      <span class="nav-icon">⚙️</span> Setup Akun &amp; Tracking
+    </div>
+    <div class="nav-link" onclick="go('keyword',this)">
+      <span class="nav-icon">🔑</span> Keyword Strategy
+    </div>
+    <div class="nav-link" onclick="go('targeting',this)">
+      <span class="nav-icon">🎯</span> Targeting &amp; Bidding
+    </div>
+    <div class="nav-link" onclick="go('adcopy',this)">
+      <span class="nav-icon">✍️</span> Ad Copy &amp; Landing Page
+    </div>
+  </div>
+
+  <div class="nav-group">
+    <span class="nav-group-label">Strategi</span>
+    <div class="nav-link" onclick="go('funnel',this)">
+      <span class="nav-icon">📊</span> High-Ticket Funnel
+    </div>
+    <div class="nav-link" onclick="go('metrik',this)">
+      <span class="nav-icon">📈</span> Baca Metrik
+    </div>
+    <div class="nav-link" onclick="go('audit',this)">
+      <span class="nav-icon">🔍</span> Audit &amp; Optimasi
+    </div>
+    <div class="nav-link" onclick="go('scaling',this)">
+      <span class="nav-icon">🚀</span> Scaling Playbook
+    </div>
+  </div>
+
+  <div class="nav-group">
+    <span class="nav-group-label">Operasional</span>
+    <div class="nav-link" onclick="go('sop',this)">
+      <span class="nav-icon">✅</span> SOP &amp; Checklist
+      <span class="nav-chip">SOP</span>
+    </div>
+    <div class="nav-link" onclick="go('ref',this)">
+      <span class="nav-icon">📋</span> Quick Reference
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ MAIN ══════════════════════════════════════════════════════════════ -->
+<main id="main">
+
+<!-- ══════════════════════════════ MINDSET ═════════════════════════════════ -->
+<section class="section active" id="s-mindset">
+  <div class="page-header">
+    <div class="page-eyebrow">🧠 Fondasi &mdash; 01</div>
+    <h1>Mindset B2B Ads</h1>
+    <p class="lead">Sebelum setup satu pun kampanye, pahami bahwa Google Ads untuk enterprise berbeda secara fundamental dari ads produk konsumer.</p>
+  </div>
+
+  <div class="callout co-amber">
+    <span class="callout-icon">⚡</span>
+    <span><strong>Prinsip utama:</strong> Kita tidak kejar volume klik. Kita kejar kualitas intent. 1 lead berkualitas dari perusahaan Rp500M lebih bernilai dari 100 klik random.</span>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">01</span> B2B vs B2C: Perbedaan Kritis</h2>
+  <div class="g2">
+    <div class="card c-red">
+      <div class="card-label">❌ B2C Mindset (Salah)</div>
+      <ul>
+        <li>Kejar CTR tinggi sebanyak mungkin</li>
+        <li>Budget besar = hasil besar</li>
+        <li>Konversi = checkout langsung</li>
+        <li>1 orang = 1 decision maker</li>
+        <li>Siklus beli: menit hingga hari</li>
+        <li>Harga murah = keunggulan</li>
+      </ul>
+    </div>
+    <div class="card c-green">
+      <div class="card-label">✅ B2B Enterprise Mindset (Benar)</div>
+      <ul>
+        <li>Kejar kualitas lead, bukan volume</li>
+        <li>Budget tepat sasaran &gt; budget besar</li>
+        <li>Konversi = konsultasi / form terisi</li>
+        <li>3–7 decision makers (IT, Finance, C-Level)</li>
+        <li>Siklus beli: 3–6 bulan</li>
+        <li>Kepercayaan &amp; expertise = keunggulan</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">02</span> Psikologi Buyer Enterprise</h2>
+  <div class="g3">
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">🔎 Apa yang mereka cari</div>
+      <p>Solusi spesifik untuk masalah bisnis nyata. Mereka tidak browse iseng &mdash; mereka ada project dengan timeline dan budget.</p>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">💬 Kata yang mereka pakai</div>
+      <p>
+        <span class="tag tg">sistem enterprise</span>
+        <span class="tag tg">vendor IT</span>
+        <span class="tag tg">transformasi digital</span>
+        <span class="tag tg">integrasi sistem</span>
+        <span class="tag tg">solusi data</span>
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">🚫 Kata yang TIDAK mereka pakai</div>
+      <p>
+        <span class="tag tr">murah</span>
+        <span class="tag tr">gratis</span>
+        <span class="tag tr">simple</span>
+        <span class="tag tr">UMKM</span>
+        <span class="tag tr">toko online</span>
+        <span class="tag tr">skripsi</span>
+      </p>
+    </div>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">03</span> Golden Rule: The Quality Filter</h2>
+  <div class="card c-amber">
+    <div class="card-label">🎯 Prinsip Filtering Badr Interactive</div>
+    <p>Setiap elemen iklan &mdash; keyword, ad copy, landing page, form &mdash; harus berfungsi sebagai <strong>filter</strong>, bukan magnet massal.</p>
+    <br>
+    <p>Menyebut skala project (Rp100–500 juta) dalam iklan bukan menakut-nakuti &mdash; itu <strong>menghemat CPC</strong> karena yang budget-nya 5 juta tidak akan klik. Setiap klik yang tersaring = budget yang tidak terbuang.</p>
+  </div>
+
+  <div class="g2">
+    <div class="card c-blue">
+      <div class="card-label">📅 Siklus Beli Enterprise</div>
+      <ul>
+        <li><strong>Bulan 1–2:</strong> Awareness &amp; Research</li>
+        <li><strong>Bulan 2–3:</strong> Evaluasi vendor (shortlist)</li>
+        <li><strong>Bulan 3–4:</strong> Demo &amp; proposal</li>
+        <li><strong>Bulan 4–6:</strong> Negosiasi &amp; deal</li>
+      </ul>
+      <br>
+      <p>Iklan harus muncul di setiap tahap, bukan cuma saat mereka siap beli.</p>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">👥 Siapa Decision Maker?</div>
+      <ul>
+        <li><strong>Champion:</strong> IT Manager / CTO</li>
+        <li><strong>Approver:</strong> CFO / Finance</li>
+        <li><strong>End user:</strong> Operations team</li>
+        <li><strong>Final:</strong> CEO / Direksi (sign off)</li>
+      </ul>
+      <br>
+      <p>Iklan harus resonan dengan Champion &mdash; mereka yang pertama kali search.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ STRUKTUR ════════════════════════════════ -->
+<section class="section" id="s-struktur">
+  <div class="page-header">
+    <div class="page-eyebrow">🏗️ Fondasi &mdash; 02</div>
+    <h1>Struktur Kampanye Ideal</h1>
+    <p class="lead">Arsitektur yang benar menentukan segalanya. Struktur yang salah = data yang tidak bisa dibaca = keputusan yang salah.</p>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">01</span> Hierarki Google Ads</h2>
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    <div class="terminal-code"><span class="ck">ACCOUNT</span> (1 akun Google Ads)
+├── <span class="cv">CAMPAIGN 1</span>: Search — Brand Keywords
+│   ├── Ad Group: Badr Interactive branded
+│   └── Budget: Rp 30.000/hari
+│
+├── <span class="cv">CAMPAIGN 2</span>: Search — Service Keywords
+│   ├── Ad Group: Jasa Software Enterprise
+│   ├── Ad Group: Jasa Data Service
+│   ├── Ad Group: Jasa Sistem Logistik
+│   └── Budget: Rp 150.000/hari
+│
+├── <span class="cv">CAMPAIGN 3</span>: Search — Problem-Aware
+│   ├── Ad Group: Masalah Data Governance
+│   ├── Ad Group: Transformasi Digital
+│   └── Budget: Rp 100.000/hari
+│
+└── <span class="cv">CAMPAIGN 4</span>: Display — Remarketing
+    ├── Ad Group: Visitor website (7 hari)
+    ├── Ad Group: Form abandonment
+    └── Budget: Rp 50.000/hari</div>
+  </div>
+
+  <div class="callout co-green">
+    <span class="callout-icon">💡</span>
+    <span><strong>Kenapa dipisah per campaign?</strong> Budget, targeting, dan bidding diatur di level Campaign. Jika satu kampanye underperform, kamu bisa pause tanpa mempengaruhi yang lain.</span>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">02</span> Prinsip Ad Group</h2>
+  <div class="g2">
+    <div class="card c-green">
+      <div class="card-label">✅ Ad Group yang Benar</div>
+      <ul>
+        <li>1 tema per ad group</li>
+        <li>5–15 keywords per ad group</li>
+        <li>Semua keyword relevan dengan ad copy</li>
+        <li>Ad copy menyebut kata kunci utama</li>
+        <li>Landing page match dengan tema</li>
+      </ul>
+    </div>
+    <div class="card c-red">
+      <div class="card-label">❌ Ad Group yang Salah</div>
+      <ul>
+        <li>Semua service dalam 1 ad group</li>
+        <li>50+ keywords campur aduk</li>
+        <li>Ad copy generic (tidak match keyword)</li>
+        <li>Semua klik ke homepage</li>
+        <li>Quality Score rendah → CPC mahal</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">03</span> Alokasi Budget Rekomendasi</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Campaign</th><th>Tujuan</th><th>Budget/Hari</th><th>Porsi</th></tr></thead>
+      <tbody>
+        <tr><td class="tc-main">Brand Keywords</td><td>Proteksi brand, capture intent tinggi</td><td class="tc-good">Rp 30.000</td><td class="tc-good">10%</td></tr>
+        <tr><td class="tc-main">Service Keywords</td><td>Main campaign, high intent</td><td class="tc-green">Rp 150.000</td><td class="tc-good">46%</td></tr>
+        <tr><td class="tc-main">Problem-Aware</td><td>Edukasi, MOFU</td><td class="tc-warn">Rp 100.000</td><td class="tc-warn">31%</td></tr>
+        <tr><td class="tc-main">Remarketing</td><td>Re-engage visitor</td><td class="tc-warn">Rp 50.000</td><td class="tc-warn">15%</td></tr>
+        <tr><td class="fw7">Total</td><td></td><td class="tc-good fw7">Rp 330.000</td><td class="tc-good fw7">100%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout co-amber">
+    <span class="callout-icon">⚠️</span>
+    <span><strong>Mulai kecil, scale proven.</strong> Jalankan budget minimal 30 hari sebelum scale. Data di bawah 30 hari tidak representatif untuk keputusan besar.</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ SETUP ══════════════════════════════════ -->
+<section class="section" id="s-setup">
+  <div class="page-header">
+    <div class="page-eyebrow">⚙️ Setup &mdash; 01</div>
+    <h1>Setup Akun &amp; Tracking</h1>
+    <p class="lead">Tanpa tracking yang benar, kamu tidak tahu mana yang berhasil. Setup tracking adalah prioritas #1 sebelum iklan berjalan.</p>
+  </div>
+
+  <div class="callout co-red">
+    <span class="callout-icon">🚨</span>
+    <span><strong>WAJIB sebelum iklan berjalan:</strong> Conversion tracking harus aktif. Tanpa ini, Google Ads tidak tahu mana klik yang jadi lead &mdash; dan Smart Bidding tidak akan bekerja dengan benar.</span>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">01</span> Buat Akun Google Ads</h2>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div class="step-body"><h4>Buka ads.google.com</h4><p>Login dengan akun Google bisnis Badr (bukan akun personal). Pilih <strong>"Create a campaign without a goal"</strong> &mdash; ini memberi kontrol penuh, bukan mode guided yang terbatas.</p></div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body"><h4>Pilih Campaign Type: Search</h4><p>Untuk B2B lead generation, Search adalah prioritas utama. User sudah punya intent &mdash; mereka aktif mencari solusi seperti yang Badr tawarkan.</p></div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-body"><h4>Isi Billing Information</h4><p>Pakai kartu kredit bisnis. Set billing threshold agar tidak kaget &mdash; mulai dari Rp500.000 sebagai threshold pertama.</p></div></div>
+    <div class="step"><div class="step-n">4</div><div class="step-body"><h4>Link ke Google Analytics 4</h4><p>Tools → Linked accounts → Google Analytics. Pilih property GA4 Badr Interactive. Ini memungkinkan import goals dari GA4 sebagai conversion.</p></div></div>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">02</span> Setup Google Tag Manager</h2>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div class="step-body"><h4>Buat Container GTM</h4><p>Buka tagmanager.google.com → New Account → masukkan nama "Badr Interactive" → Container type: Web.</p></div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body"><h4>Pasang GTM Code di Website</h4><p>Ada 2 snippet: satu di <code style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green)">&lt;head&gt;</code>, satu di <code style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green)">&lt;body&gt;</code>. Minta tim developer untuk pasang. Verifikasi dengan GTM Preview mode.</p></div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-body"><h4>Buat Trigger: Form Submission</h4><p>Triggers → New → Form Submission. Setting: <strong>Wait for tags</strong> ✓, <strong>Check validation</strong> ✓. Condition: Form ID = [ID form konsultasi di landing page].</p></div></div>
+    <div class="step"><div class="step-n">4</div><div class="step-body"><h4>Buat Tag: Google Ads Conversion</h4><p>Tags → New → Google Ads Conversion Tracking. Masukkan Conversion ID dan Conversion Label dari Google Ads. Hubungkan ke Trigger form submission tadi.</p></div></div>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">03</span> Setup Conversion di Google Ads</h2>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div class="step-body"><h4>Tools → Conversions → New Conversion Action</h4><p>Pilih: <strong>Website</strong>. Masukkan URL website Badr.</p></div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body"><h4>Setting Conversion Action</h4><ul><li><strong>Category:</strong> Submit lead form</li><li><strong>Value:</strong> Rp 500.000 (estimasi nilai per lead)</li><li><strong>Count:</strong> One (1 per klik, bukan semua submission)</li><li><strong>Conversion window:</strong> 30 hari</li></ul></div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-body"><h4>Verifikasi Tracking Aktif</h4><p>Isi form test di landing page. Tunggu 24 jam, cek di Conversions &mdash; column "Status" harus menunjukkan <span class="tag tg">Recording conversions</span>.</p></div></div>
+  </div>
+
+  <div class="card c-green" style="margin-top:16px">
+    <div class="card-label">✅ Tracking Checklist Sebelum Go-Live</div>
+    <ul>
+      <li>GTM container terpasang di semua halaman</li>
+      <li>GA4 property linked ke Google Ads</li>
+      <li>Conversion action "Form Submission" aktif dan recording</li>
+      <li>Test form &mdash; konversi muncul di akun dalam 24 jam</li>
+      <li>Auto-tagging aktif di campaign settings</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ KEYWORD ════════════════════════════════ -->
+<section class="section" id="s-keyword">
+  <div class="page-header">
+    <div class="page-eyebrow">🔑 Setup &mdash; 02</div>
+    <h1>Keyword Strategy</h1>
+    <p class="lead">Keyword adalah fondasi seluruh kampanye. Pilih yang salah = bayar untuk klik yang tidak pernah jadi leads.</p>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">01</span> Match Types</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Type</th><th>Format</th><th>Cara Kerja</th><th>Rekomendasi</th></tr></thead>
+      <tbody>
+        <tr><td class="tc-main">Exact Match</td><td class="mono">[jasa software enterprise]</td><td>Muncul HANYA jika query persis sama atau sangat mirip</td><td class="tc-good">✅ Prioritas utama</td></tr>
+        <tr><td class="tc-main">Phrase Match</td><td class="mono">"jasa software enterprise"</td><td>Muncul jika query mengandung frasa ini (dengan kata tambahan)</td><td class="tc-warn">⚡ Gunakan setelah Exact proven</td></tr>
+        <tr><td class="tc-main">Broad Match</td><td class="mono">jasa software enterprise</td><td>Google menentukan sendiri &mdash; sering melenceng jauh</td><td class="tc-bad">❌ Hindari saat awal</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout co-green">
+    <span class="callout-icon">💡</span>
+    <span><strong>Strategi awal Badr:</strong> Mulai 100% Exact Match + Phrase Match. Monitor Search Term Report 2 minggu. Setelah ada data, baru expand ke Broad Match Modifier untuk keyword yang proven convert.</span>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">02</span> Master Keyword List</h2>
+
+  <h3 class="subh">Kategori 1: Service Keywords (Intent Tinggi)</h3>
+  <div class="card">
+    <span class="tag tg">[jasa pembuatan software enterprise]</span>
+    <span class="tag tg">[software house enterprise jakarta]</span>
+    <span class="tag tg">[vendor software enterprise indonesia]</span>
+    <span class="tag tg">[jasa pengembangan sistem perusahaan]</span>
+    <span class="tag tg">[software custom perusahaan]</span>
+    <span class="tag tg">[jasa pembuatan aplikasi enterprise]</span>
+    <span class="tag tg">[vendor it enterprise syariah]</span>
+    <span class="tag tg">[software house syariah jakarta]</span>
+    <span class="tag tg">[jasa konsultasi IT enterprise]</span>
+    <span class="tag tg">[sistem informasi perusahaan custom]</span>
+  </div>
+
+  <h3 class="subh">Kategori 2: Industry-Specific (High Value)</h3>
+  <div class="card">
+    <p style="font-size:11px;color:var(--text-3);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:1px">Logistik</p>
+    <span class="tag tb">[sistem logistik perusahaan]</span>
+    <span class="tag tb">[software manajemen logistik enterprise]</span>
+    <span class="tag tb">[jasa pembuatan sistem logistik custom]</span>
+    <span class="tag tb">[vendor it logistik indonesia]</span>
+    <p style="font-size:11px;color:var(--text-3);margin:12px 0 8px;font-weight:600;text-transform:uppercase;letter-spacing:1px">Healthcare</p>
+    <span class="tag tb">[sistem informasi rumah sakit]</span>
+    <span class="tag tb">[software manajemen klinik enterprise]</span>
+    <span class="tag tb">[rekam medis elektronik custom]</span>
+    <span class="tag tb">[his hospital information system]</span>
+    <p style="font-size:11px;color:var(--text-3);margin:12px 0 8px;font-weight:600;text-transform:uppercase;letter-spacing:1px">Data &amp; Fintech</p>
+    <span class="tag tb">[jasa data governance indonesia]</span>
+    <span class="tag tb">[data warehouse enterprise]</span>
+    <span class="tag tb">[software fintech syariah]</span>
+    <span class="tag tb">[integrasi data perusahaan]</span>
+  </div>
+
+  <h3 class="subh">Kategori 3: Problem-Aware Keywords</h3>
+  <div class="card">
+    <span class="tag ta">[transformasi digital perusahaan]</span>
+    <span class="tag ta">[solusi data silo perusahaan]</span>
+    <span class="tag ta">[integrasi sistem legacy]</span>
+    <span class="tag ta">[otomasi proses bisnis enterprise]</span>
+    <span class="tag ta">[digitalisasi operasional perusahaan]</span>
+    <span class="tag ta">[sistem erp perusahaan indonesia]</span>
+    <span class="tag ta">[vendor erp indonesia]</span>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">03</span> Negative Keywords &mdash; Pasang Hari 1</h2>
+  <div class="card c-red">
+    <div class="card-label">🚫 Daftar Negative Keywords Badr</div>
+    <span class="tag tr">murah</span><span class="tag tr">gratis</span><span class="tag tr">free</span><span class="tag tr">cheap</span><span class="tag tr">umkm</span>
+    <span class="tag tr">toko online</span><span class="tag tr">warung</span><span class="tag tr">skripsi</span><span class="tag tr">tugas</span><span class="tag tr">makalah</span>
+    <span class="tag tr">template</span><span class="tag tr">contoh</span><span class="tag tr">belajar</span><span class="tag tr">kursus</span><span class="tag tr">tutorial</span>
+    <span class="tag tr">freelance</span><span class="tag tr">sederhana</span><span class="tag tr">personal</span><span class="tag tr">individual</span><span class="tag tr">lowongan</span>
+    <span class="tag tr">kerja</span><span class="tag tr">magang</span><span class="tag tr">aplikasi android</span><span class="tag tr">game</span><span class="tag tr">download</span>
+    <span class="tag tr">open source</span><span class="tag tr">wordpress</span><span class="tag tr">blogspot</span>
+  </div>
+
+  <div class="callout co-amber">
+    <span class="callout-icon">🔄</span>
+    <span><strong>Update setiap minggu</strong> dari Search Term Report. Selalu ada kata baru yang perlu di-exclude.</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ TARGETING ══════════════════════════════ -->
+<section class="section" id="s-targeting">
+  <div class="page-header">
+    <div class="page-eyebrow">🎯 Setup &mdash; 03</div>
+    <h1>Targeting &amp; Bidding</h1>
+    <p class="lead">Tampil ke orang yang tepat, di tempat yang tepat, di waktu yang tepat. Targeting yang buruk = buang budget ke audiens yang salah.</p>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">01</span> Geographic Targeting</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Lokasi</th><th>Prioritas</th><th>Bid Adj.</th><th>Alasan</th></tr></thead>
+      <tbody>
+        <tr><td class="tc-main">Jakarta Selatan (SCBD, Kuningan)</td><td class="tc-good">★★★</td><td class="tc-good">+20%</td><td>Konsentrasi HQ perusahaan besar</td></tr>
+        <tr><td class="tc-main">Jakarta Pusat</td><td class="tc-good">★★★</td><td class="tc-good">+15%</td><td>BUMN, pemerintah</td></tr>
+        <tr><td class="tc-main">BSD, Serpong, Tangerang</td><td class="tc-warn">★★☆</td><td class="tc-warn">+10%</td><td>Tech park, startup, multinasional</td></tr>
+        <tr><td class="tc-main">Surabaya</td><td class="tc-warn">★★☆</td><td class="tc-warn">+10%</td><td>Kota bisnis terbesar ke-2</td></tr>
+        <tr><td class="tc-main">Bandung</td><td class="tc-warn">★☆☆</td><td>+0%</td><td>Monitor dulu, scale jika convert</td></tr>
+        <tr><td class="tc-main">Indonesia lainnya</td><td class="tc-bad">☆☆☆</td><td class="tc-bad">-20%</td><td>Lower quality, naikkan hanya jika ada data</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">02</span> Device &amp; Schedule</h2>
+  <div class="g2">
+    <div class="card c-green">
+      <div class="card-label">💻 Desktop</div>
+      <p>Enterprise buyer riset di jam kerja, pakai komputer kantor. <strong>Bid adjustment: +20%</strong></p>
+      <br>
+      <p>Form panjang lebih mudah diisi di desktop.</p>
+    </div>
+    <div class="card c-amber">
+      <div class="card-label">📱 Mobile</div>
+      <p>Traffic tinggi tapi konversi rendah untuk B2B. <strong>Bid adjustment: -50%</strong></p>
+      <br>
+      <p>Monitor: jika mobile CVR &gt; 2% setelah 30 hari, pertimbangkan naikkan bid.</p>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Hari</th><th>Jam</th><th>Bid Multiplier</th><th>Alasan</th></tr></thead>
+      <tbody>
+        <tr><td class="tc-main">Senin–Rabu</td><td>08:00–12:00</td><td class="tc-good">+15%</td><td>Peak research time, awal minggu kerja</td></tr>
+        <tr><td class="tc-main">Senin–Jumat</td><td>12:00–17:00</td><td>+0%</td><td>Normal rate</td></tr>
+        <tr><td class="tc-main">Senin–Jumat</td><td>17:00–19:00</td><td class="tc-warn">-10%</td><td>Pulang kerja, fokus menurun</td></tr>
+        <tr><td class="tc-main">Sabtu</td><td>Semua jam</td><td class="tc-bad">-50%</td><td>Rendah untuk B2B</td></tr>
+        <tr><td class="tc-main">Minggu</td><td>Semua jam</td><td class="tc-bad">-80%</td><td>Sangat rendah, hampir matikan</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">03</span> Bidding Strategy &mdash; 3 Fase</h2>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div class="step-body">
+      <h4>Fase 1: Manual CPC (Minggu 1–4)</h4>
+      <p>Kontrol penuh atas setiap bid. Tujuan: kumpulkan data konversi awal.</p>
+      <ul>
+        <li>Service keywords: max CPC Rp 30.000–60.000</li>
+        <li>Brand keywords: max CPC Rp 5.000–10.000</li>
+        <li>Problem-aware: max CPC Rp 15.000–30.000</li>
+      </ul>
+    </div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body">
+      <h4>Fase 2: Enhanced CPC (Minggu 4–8)</h4>
+      <p>Google adjust bid sedikit di atas/bawah max CPC berdasarkan kemungkinan konversi. Aktifkan setelah minimal 20 konversi terkumpul.</p>
+    </div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-body">
+      <h4>Fase 3: Target CPA (Bulan 2+)</h4>
+      <p>Google otomatis optimasi untuk capai target CPL. <strong>Set target CPA: Rp 1.500.000 per lead</strong>. Butuh minimal 30 konversi dalam 30 hari.</p>
+    </div></div>
+  </div>
+
+  <div class="callout co-red">
+    <span class="callout-icon">🚨</span>
+    <span><strong>Jangan langsung pakai Target CPA atau Maximize Conversions</strong> tanpa data yang cukup. Google akan spend budget tanpa arah jika belum ada historical conversion data.</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ AD COPY ════════════════════════════════ -->
+<section class="section" id="s-adcopy">
+  <div class="page-header">
+    <div class="page-eyebrow">✍️ Setup &mdash; 04</div>
+    <h1>Ad Copy &amp; Landing Page</h1>
+    <p class="lead">Ad copy adalah gatekeeper pertama. Landing page adalah penentu konversi. Keduanya harus bekerja sebagai sistem.</p>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">01</span> Anatomy RSA (Responsive Search Ad)</h2>
+  <div class="g2">
+    <div class="card">
+      <div class="card-label" style="color:var(--blue)">Headlines &mdash; 15 opsi, Google pilih 3</div>
+      <ul>
+        <li>Maks 30 karakter per headline</li>
+        <li>Keyword utama di minimal 3 headline</li>
+        <li>Variasikan: benefit, proof, CTA, differentiator</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--blue)">Descriptions &mdash; 4 opsi, Google pilih 2</div>
+      <ul>
+        <li>Maks 90 karakter per description</li>
+        <li>Elaborasi benefit + CTA kuat</li>
+        <li>Variasikan angle tiap description</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">02</span> Template Ad Copy (High-Ticket B2B)</h2>
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    <div class="terminal-code"><span class="ck">HEADLINES</span> (pilih 5–7):
+<span class="cv">H1:</span> Sistem Enterprise Custom Badr
+<span class="cv">H2:</span> Software House Syariah-Compliant
+<span class="cv">H3:</span> Proyek Rp100–500 Juta+
+<span class="cv">H4:</span> Khusus Perusahaan &amp; BUMN
+<span class="cv">H5:</span> 50+ Klien Enterprise Dipercaya
+<span class="cv">H6:</span> Konsultasi Gratis 60 Menit
+<span class="cv">H7:</span> Tim Berpengalaman 10+ Tahun
+
+<span class="ck">DESCRIPTIONS</span>:
+<span class="cv">D1:</span> Kami bangun sistem logistik, healthcare, dan fintech yang terintegrasi
+    penuh. Mulai dengan sesi konsultasi strategis, tidak ada biaya awal.
+<span class="cv">D2:</span> Dipercaya oleh perusahaan di Jakarta, BSD, dan Surabaya. Jadwalkan
+    konsultasi dan dapatkan roadmap digital transformation gratis.</div>
+  </div>
+
+  <div class="callout co-amber">
+    <span class="callout-icon">⚡</span>
+    <span><strong>Kenapa sebut "Rp100–500 Juta+"?</strong> Ini pre-qualify di level iklan. Yang budget-nya 10 juta tidak akan klik. Biaya setiap klik yang tersaring = penghematan nyata.</span>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">03</span> Ad Extensions &mdash; Wajib Aktifkan</h2>
+  <div class="g2">
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">📞 Call Extension</div>
+      <p>Pasang nomor WA/telepon Badr. Enterprise kadang langsung telepon tanpa klik. Di mobile, ini bisa jadi konversi langsung.</p>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">🔗 Sitelink Extension</div>
+      <ul><li>Case Studies Enterprise</li><li>Layanan Data Service</li><li>Tentang Tim Badr</li><li>Konsultasi Gratis</li></ul>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">📌 Callout Extension</div>
+      <p><span class="tag tg">Syariah-Compliant</span><span class="tag tg">BUMN-Trusted</span><span class="tag tg">10+ Tahun</span><span class="tag tg">Support 24/7</span></p>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">📋 Structured Snippet</div>
+      <p>Header: Services<br>Values: Sistem Logistik, Data Platform, ERP Custom, Healthcare IT</p>
+    </div>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">04</span> Landing Page: The Filter System</h2>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div class="step-body"><h4>Hero Section (Above the Fold)</h4><ul><li>Headline HARUS match keyword yang diklik (Message Match)</li><li>Sub-headline: bukti kemampuan + skala</li><li>CTA button: <strong>"Jadwalkan Konsultasi Gratis"</strong></li><li>Tidak ada distraksi &mdash; tidak ada menu navigasi lengkap</li></ul></div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body"><h4>Trust Section: Social Proof</h4><ul><li>Logo klien (BUMN, perusahaan besar)</li><li>Angka: "50+ Proyek", "10 Tahun", "5 Industri"</li><li>Testimonial dari C-Level / Decision Maker</li></ul></div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-body"><h4>The Filter Form &mdash; 5 Field Wajib</h4><ul><li>Nama Lengkap</li><li>Nama Perusahaan <strong class="text-green">(wajib, bukan opsional)</strong></li><li>Jabatan / Posisi</li><li>Range Budget: [&lt;50jt] [50–200jt] [200jt–1M] [&gt;1M]</li><li>Kebutuhan singkat (textarea)</li></ul><br><p>Lead yang tidak isi "Nama Perusahaan" = individual, bukan enterprise.</p></div></div>
+    <div class="step"><div class="step-n">4</div><div class="step-body"><h4>Thank You Page</h4><p>Setelah submit: redirect ke halaman terima kasih. Pasang Google Ads conversion tag di sini. Konten: konfirmasi, timeline follow-up (1×24 jam), link case study relevan.</p></div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ FUNNEL ════════════════════════════════ -->
+<section class="section" id="s-funnel">
+  <div class="page-header">
+    <div class="page-eyebrow">📊 Strategi &mdash; 01</div>
+    <h1>High-Ticket Funnel</h1>
+    <p class="lead">Enterprise buyer tidak langsung beli setelah lihat satu iklan. Mereka butuh 7–12 touchpoint. Funnel memastikan Badr ada di setiap tahap.</p>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">01</span> 3 Tahap Funnel</h2>
+  <div class="funnel">
+    <div class="funnel-row f-tofu">
+      <div class="funnel-bar"></div>
+      <div class="funnel-body">
+        <h4>TOFU &mdash; Awareness</h4>
+        <p>Mereka tahu ada masalah, belum tahu solusinya. Edukasi tanpa hard sell.</p>
+        <p class="funnel-meta"><strong>Message:</strong> "Bahaya Data Silo di Logistik" · "Tanda Sistem IT Perlu Transformasi"<br><strong>Channel:</strong> Display Ads, YouTube, LinkedIn</p>
+      </div>
+      <div class="funnel-alloc">
+        <span class="pct">20%</span>
+        <span class="pct-label">Budget</span>
+      </div>
+    </div>
+    <div class="funnel-row f-mofu">
+      <div class="funnel-bar"></div>
+      <div class="funnel-body">
+        <h4>MOFU &mdash; Consideration</h4>
+        <p>Mereka aktif mencari vendor, evaluasi opsi. Tunjukkan kapabilitas dan bukti.</p>
+        <p class="funnel-meta"><strong>Message:</strong> "Studi Kasus Transformasi Digital BUMN" · "Kenapa 50+ Enterprise Pilih Badr"<br><strong>Channel:</strong> Search (problem keywords), Remarketing TOFU</p>
+      </div>
+      <div class="funnel-alloc">
+        <span class="pct">30%</span>
+        <span class="pct-label">Budget</span>
+      </div>
+    </div>
+    <div class="funnel-row f-bofu">
+      <div class="funnel-bar"></div>
+      <div class="funnel-body">
+        <h4>BOFU &mdash; Conversion</h4>
+        <p>Mereka siap shortlist vendor, siap konsultasi. Buat entry point semudah mungkin.</p>
+        <p class="funnel-meta"><strong>Message:</strong> "Konsultasi Arsitektur Enterprise Gratis 60 Menit" · "Custom Proposal dalam 3 Hari"<br><strong>Channel:</strong> Search (service keywords), Brand keywords, Remarketing MOFU</p>
+      </div>
+      <div class="funnel-alloc">
+        <span class="pct">50%</span>
+        <span class="pct-label">Budget</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">02</span> Remarketing Segmen</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Segmen</th><th>Window</th><th>Bid</th><th>Message</th></tr></thead>
+      <tbody>
+        <tr><td class="tc-main">All visitors</td><td>7 hari</td><td class="tc-good">Tertinggi</td><td>"Masih mencari solusi IT enterprise?"</td></tr>
+        <tr><td class="tc-main">Case Study reader</td><td>30 hari</td><td class="tc-warn">Medium</td><td>"Lihat bagaimana kami bantu [industri mereka]"</td></tr>
+        <tr><td class="tc-main">Form abandonment</td><td>14 hari</td><td class="tc-good">Tinggi</td><td>"Konsultasi Anda sudah hampir selesai"</td></tr>
+        <tr><td class="tc-main">Thank you page visitor</td><td>90 hari</td><td class="tc-bad">Exclude</td><td>Exclude dari semua campaign</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">03</span> Konten per Industri</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Industri</th><th>Pain Point (TOFU)</th><th>CTA (BOFU)</th></tr></thead>
+      <tbody>
+        <tr><td class="tc-main">Logistik</td><td>Data silo antar cabang, pelacakan real-time terbatas</td><td>Konsultasi Sistem Logistik Terintegrasi</td></tr>
+        <tr><td class="tc-main">Healthcare</td><td>Rekam medis manual, tidak terintegrasi dengan BPJS</td><td>Demo HIS &amp; Rekam Medis Elektronik</td></tr>
+        <tr><td class="tc-main">Fintech/BUMN</td><td>Legacy system tidak skalabel, compliance issue</td><td>Roadmap Transformasi Digital Syariah</td></tr>
+        <tr><td class="tc-main">Manufaktur</td><td>Sistem produksi terpisah dari inventory</td><td>Konsultasi ERP Custom Manufacturing</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ METRIK ════════════════════════════════ -->
+<section class="section" id="s-metrik">
+  <div class="page-header">
+    <div class="page-eyebrow">📈 Strategi &mdash; 02</div>
+    <h1>Baca Metrik</h1>
+    <p class="lead">Data tanpa interpretasi tidak berguna. Ini panduan baca angka dan keputusan apa yang harus diambil.</p>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">01</span> Target KPI &mdash; Badr Interactive</h2>
+  <div class="kpi-strip">
+    <div class="kpi-cell"><span class="kpi-label">CTR</span><span class="kpi-val">≥3%</span><span class="kpi-target">Click-Through Rate</span></div>
+    <div class="kpi-cell"><span class="kpi-label">CPC</span><span class="kpi-val">≤50rb</span><span class="kpi-target">Per klik</span></div>
+    <div class="kpi-cell"><span class="kpi-label">CVR</span><span class="kpi-val">≥3%</span><span class="kpi-target">Klik → Form</span></div>
+    <div class="kpi-cell"><span class="kpi-label">CPL</span><span class="kpi-val">≤2jt</span><span class="kpi-target">Per hot lead</span></div>
+    <div class="kpi-cell"><span class="kpi-label">Qual. Score</span><span class="kpi-val">≥7</span><span class="kpi-target">Per keyword</span></div>
+    <div class="kpi-cell"><span class="kpi-label">Imp. Share</span><span class="kpi-val">≥60%</span><span class="kpi-target">Keyword utama</span></div>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">02</span> Diagnosis &amp; Action</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Gejala</th><th>Kemungkinan Penyebab</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td class="tc-bad">CTR &lt; 1%</td><td>Ad copy tidak relevan, keyword terlalu broad</td><td>Rewrite headline, perketat match type</td></tr>
+        <tr><td class="tc-bad">CPC &gt; Rp 100rb</td><td>Quality Score rendah, persaingan tinggi</td><td>Perbaiki landing page relevance, naikkan QS</td></tr>
+        <tr><td class="tc-bad">CVR &lt; 1%</td><td>Landing page tidak match keyword, form terlalu panjang</td><td>A/B test landing page, cek message match</td></tr>
+        <tr><td class="tc-bad">CPL &gt; Rp 3 juta</td><td>Kombinasi CTR rendah + CVR rendah</td><td>Full audit: keywords → ad → landing page</td></tr>
+        <tr><td class="tc-bad">QS &lt; 5</td><td>Ad copy, landing page, keyword tidak selaras</td><td>Cek 3 komponen QS: Expected CTR, Ad Relevance, LP Experience</td></tr>
+        <tr><td class="tc-bad">Imp. Share &lt; 40%</td><td>Budget terlalu rendah atau bid kalah</td><td>Naikkan budget atau bid, fokus ke keyword highest intent</td></tr>
+        <tr><td class="tc-good">Semua metrik hijau ✓</td><td>Kampanye sehat</td><td>Siap scale &mdash; lihat section Scaling</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">03</span> Quality Score &mdash; 3 Komponen</h2>
+  <div class="g3">
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">1. Expected CTR</div>
+      <p>Seberapa sering iklan diklik vs kompetitor. Perbaiki: ad copy lebih menarik, headline match dengan keyword.</p>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">2. Ad Relevance</div>
+      <p>Seberapa relevan ad copy dengan keyword. Perbaiki: pastikan keyword utama muncul di Headline 1 dan description.</p>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">3. Landing Page Exp.</div>
+      <p>Kecepatan load, relevansi konten. Perbaiki: page speed &lt; 3 detik, konten match keyword, tidak ada popup agresif.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ AUDIT ═════════════════════════════════ -->
+<section class="section" id="s-audit">
+  <div class="page-header">
+    <div class="page-eyebrow">🔍 Strategi &mdash; 03</div>
+    <h1>Audit &amp; Optimasi</h1>
+    <p class="lead">Audit rutin adalah perbedaan antara budget yang terbakar dan budget yang menghasilkan. Lakukan ini secara disiplin.</p>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">01</span> Audit Mingguan (30 menit)</h2>
+  <h3 class="subh">Search Term Report</h3>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div class="step-body"><h4>Buka Search Term Report</h4><p>Campaign → Keywords → Search terms. Set date range: 7 hari terakhir.</p></div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body"><h4>Filter: Spend tinggi, 0 konversi</h4><p>Sort by Cost (descending). Keyword yang sudah habis &gt; Rp 200.000 tanpa konversi = kandidat pause atau tambah ke negative.</p></div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-body"><h4>Identifikasi: Irrelevant searches</h4><p>Cari kata yang tidak relevan (murah, skripsi, freelance, dll). Tambahkan ke Negative Keyword List di level campaign.</p></div></div>
+    <div class="step"><div class="step-n">4</div><div class="step-body"><h4>Identifikasi: High-convert searches</h4><p>Search term yang konversi tapi belum ada sebagai keyword → tambahkan sebagai exact match keyword baru.</p></div></div>
+  </div>
+
+  <h3 class="subh">Aturan Pause Keyword</h3>
+  <div class="card c-amber">
+    <ul>
+      <li>CTR &lt; 0.5% setelah 500 impressions → pause, rewrite ad copy</li>
+      <li>Spend &gt; 3× CPL target tanpa konversi → pause keyword</li>
+      <li>Quality Score ≤ 3 → pause, fix landing page dulu</li>
+    </ul>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">02</span> Audit Bulanan (2 jam)</h2>
+  <div class="g2">
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">📍 Location Audit</div>
+      <ul>
+        <li>Campaign → Locations → "Where ads showed"</li>
+        <li>Bandingkan CPL per kota</li>
+        <li>Naikkan bid kota dengan CPL rendah</li>
+        <li>Exclude kota CPL tinggi</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">💻 Device Audit</div>
+      <ul>
+        <li>Campaign → Devices</li>
+        <li>Compare CVR Desktop vs Mobile</li>
+        <li>Adjust bid berdasarkan data aktual, bukan asumsi</li>
+        <li>Update bid adjustment jika ada perubahan signifikan</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">⏰ Schedule Audit</div>
+      <ul>
+        <li>Campaign → Ad Schedule</li>
+        <li>Jam berapa paling banyak convert?</li>
+        <li>Naikkan bid di jam peak</li>
+        <li>Kurangi bid di jam dead</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">📊 Budget Audit</div>
+      <ul>
+        <li>Cek campaign mana yang "limited by budget"</li>
+        <li>Geser budget dari underperform ke overperform</li>
+        <li>Review apakah CPL masih dalam target</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">03</span> Kompetitor Analysis</h2>
+  <div class="card">
+    <ul>
+      <li style="margin-bottom:8px"><strong>Auction Insights Report:</strong> Campaign → Auction insights. Lihat siapa yang muncul bersamaan dan berapa % impression share mereka.</li>
+      <li style="margin-bottom:8px"><strong>Google Search Manual:</strong> Ketik keyword utama di incognito mode. Screenshot ad copy kompetitor setiap bulan.</li>
+      <li><strong>Action:</strong> Jika kompetitor lemah di suatu keyword tapi Badr kuat → scale budget di sana.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ SCALING ════════════════════════════════ -->
+<section class="section" id="s-scaling">
+  <div class="page-header">
+    <div class="page-eyebrow">🚀 Strategi &mdash; 04</div>
+    <h1>Scaling Playbook</h1>
+    <p class="lead">Scale terlalu cepat = waste. Scale terlalu lambat = missed opportunity. Framework kapan dan bagaimana scale yang aman.</p>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">01</span> Kapan Boleh Scale?</h2>
+  <div class="card c-green">
+    <div class="card-label">✅ Semua kondisi ini harus terpenuhi</div>
+    <ul>
+      <li>CVR ≥ 3% selama <strong>2 minggu berturut-turut</strong> (bukan hanya 1 minggu)</li>
+      <li>CPL masih <strong>di bawah target</strong> (≤ Rp 2.000.000)</li>
+      <li>Search Impression Share masih <strong>&lt; 70%</strong> (masih ada ruang tumbuh)</li>
+      <li>Minimal <strong>30 konversi</strong> sudah terkumpul (data cukup untuk Smart Bidding)</li>
+      <li>Tracking berfungsi dengan benar (verified)</li>
+    </ul>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">02</span> 4 Dimensi Scaling</h2>
+  <div class="g2">
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">1. Vertical Scaling</div>
+      <p><strong>Naikkan budget kampanye yang proven.</strong></p>
+      <br>
+      <ul>
+        <li>Naikkan maksimal <strong>20–30% per minggu</strong></li>
+        <li>Jangan langsung 2× &mdash; Google butuh waktu re-learn</li>
+        <li>Monitor 7 hari setelah setiap kenaikan</li>
+        <li>CPL naik &gt; 30% setelah scale → turunkan kembali</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">2. Horizontal Scaling</div>
+      <p><strong>Perluas jangkauan keyword.</strong></p>
+      <br>
+      <ul>
+        <li>Tambah keyword baru dari Search Term Report</li>
+        <li>Buat ad group baru per industri target</li>
+        <li>Expand match type dari Exact ke Phrase</li>
+        <li>Tambah long-tail keyword yang proven</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">3. Geographic Scaling</div>
+      <p><strong>Ekspansi ke kota baru.</strong></p>
+      <br>
+      <ul>
+        <li>Mulai dari Bandung, Semarang</li>
+        <li>Set budget terpisah per kota baru</li>
+        <li>Monitor 30 hari, compare CPL vs kota lama</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">4. Network Scaling</div>
+      <p><strong>Tambah channel baru.</strong></p>
+      <br>
+      <ul>
+        <li>Aktifkan Display Remarketing setelah Search proven</li>
+        <li>Coba YouTube ads (TOFU awareness)</li>
+        <li>Performance Max setelah 50+ konversi</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">03</span> Scaling Decision Tree</h2>
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    <div class="terminal-code">Start: Kampanye aktif 30+ hari
+│
+├─ CPL &gt; Rp 2.500.000?
+│   YES → <span class="cc">STOP SCALE → Audit dulu (keyword, LP, targeting)</span>
+│   NO  → lanjut
+│
+├─ CVR &lt; 2%?
+│   YES → <span class="cc">Fix landing page dulu, jangan scale</span>
+│   NO  → lanjut
+│
+├─ Impression Share &gt; 80%?
+│   YES → <span class="cv">Horizontal scale (keyword baru / geo baru)</span>
+│   NO  → <span class="ck">Vertical scale (naikkan budget 20–30%)</span>
+│
+└─ Setelah scale: monitor 7 hari
+    ├─ CPL tetap/turun → <span class="ck">Scale lagi sesuai aturan</span>
+    └─ CPL naik &gt; 30% → <span class="cc">Turunkan budget ke level sebelumnya</span></div>
+  </div>
+
+  <div class="card c-red">
+    <div class="card-label">🚫 Aturan yang Tidak Boleh Dilanggar</div>
+    <ul>
+      <li>Jangan scale ketika CPL sudah di atas target &mdash; fix dulu</li>
+      <li>Jangan naikkan budget &gt; 30% sekaligus</li>
+      <li>Jangan scale tanpa conversion tracking yang verified</li>
+      <li>Jangan scale di bulan pertama (data belum cukup)</li>
+      <li>Jangan matikan kampanye yang sedang konversi tiba-tiba</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ SOP ═══════════════════════════════════ -->
+<section class="section" id="s-sop">
+  <div class="page-header">
+    <div class="page-eyebrow">✅ Operasional &mdash; 01</div>
+    <h1>SOP &amp; Checklist</h1>
+    <p class="lead">Checklist bisa di-tick langsung di browser. Progress tersimpan otomatis di perangkat ini.</p>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">01</span> Checklist Harian (5 menit)</h2>
+  <div class="check-group" id="cl-daily"></div>
+
+  <h2 class="sh"><span class="sh-num">02</span> Checklist Mingguan (30 menit)</h2>
+  <div class="check-group" id="cl-weekly"></div>
+
+  <h2 class="sh"><span class="sh-num">03</span> Checklist Bulanan (2 jam)</h2>
+  <div class="check-group" id="cl-monthly"></div>
+
+  <h2 class="sh"><span class="sh-num">04</span> Go-Live Kampanye Baru</h2>
+  <div class="check-group" id="cl-golive"></div>
+</section>
+
+<!-- ══════════════════════════════ REFERENCE ══════════════════════════════ -->
+<section class="section" id="s-ref">
+  <div class="page-header">
+    <div class="page-eyebrow">📋 Operasional &mdash; 02</div>
+    <h1>Quick Reference</h1>
+    <p class="lead">Cheat sheet semua angka, aturan, dan template penting untuk akses cepat.</p>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">01</span> KPI Summary</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Metrik</th><th>Target</th><th>Alert</th><th>Critical (stop/fix)</th></tr></thead>
+      <tbody>
+        <tr><td class="tc-main">CTR</td><td class="tc-good">≥ 3%</td><td class="tc-warn">1–3%</td><td class="tc-bad">&lt; 1%</td></tr>
+        <tr><td class="tc-main">CPC</td><td class="tc-good">Rp 20.000–50.000</td><td class="tc-warn">Rp 50.000–100.000</td><td class="tc-bad">&gt; Rp 100.000</td></tr>
+        <tr><td class="tc-main">CVR</td><td class="tc-good">≥ 3%</td><td class="tc-warn">1–3%</td><td class="tc-bad">&lt; 1%</td></tr>
+        <tr><td class="tc-main">CPL</td><td class="tc-good">≤ Rp 1.500.000</td><td class="tc-warn">Rp 1,5–2,5 juta</td><td class="tc-bad">&gt; Rp 3.000.000</td></tr>
+        <tr><td class="tc-main">Quality Score</td><td class="tc-good">8–10</td><td class="tc-warn">5–7</td><td class="tc-bad">≤ 4</td></tr>
+        <tr><td class="tc-main">Search Imp. Share</td><td class="tc-good">≥ 60%</td><td class="tc-warn">40–60%</td><td class="tc-bad">&lt; 40%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">02</span> Negative Keywords Master</h2>
+  <div class="card c-red">
+    <span class="tag tr">murah</span><span class="tag tr">gratis</span><span class="tag tr">free</span><span class="tag tr">cheap</span><span class="tag tr">umkm</span>
+    <span class="tag tr">toko online</span><span class="tag tr">warung</span><span class="tag tr">skripsi</span><span class="tag tr">tugas</span><span class="tag tr">makalah</span>
+    <span class="tag tr">template</span><span class="tag tr">contoh</span><span class="tag tr">belajar</span><span class="tag tr">kursus</span><span class="tag tr">tutorial</span>
+    <span class="tag tr">freelance</span><span class="tag tr">sederhana</span><span class="tag tr">personal</span><span class="tag tr">individual</span><span class="tag tr">lowongan</span>
+    <span class="tag tr">kerja</span><span class="tag tr">magang</span><span class="tag tr">game</span><span class="tag tr">download</span><span class="tag tr">open source</span>
+    <span class="tag tr">wordpress</span><span class="tag tr">blogspot</span>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">03</span> Bid Adjustment Cheat Sheet</h2>
+  <div class="g3">
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">📍 Geografis</div>
+      <ul>
+        <li>Jakarta Selatan: <span class="text-green">+20%</span></li>
+        <li>Jakarta Pusat: <span class="text-green">+15%</span></li>
+        <li>BSD/Tangerang: <span class="text-green">+10%</span></li>
+        <li>Surabaya: <span class="text-green">+10%</span></li>
+        <li>Daerah lain: <span class="text-amber">-20%</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">💻 Device</div>
+      <ul>
+        <li>Desktop: <span class="text-green">+20%</span></li>
+        <li>Tablet: <span class="text-amber">+0%</span></li>
+        <li>Mobile: <span class="text-red">-50%</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--text-2)">⏰ Ad Schedule</div>
+      <ul>
+        <li>Sen–Rab 08–12: <span class="text-green">+15%</span></li>
+        <li>Sen–Jum 12–17: <span class="text-amber">+0%</span></li>
+        <li>Sen–Jum 17–19: <span class="text-amber">-10%</span></li>
+        <li>Sabtu: <span class="text-red">-50%</span></li>
+        <li>Minggu: <span class="text-red">-80%</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sh"><span class="sh-num">04</span> Tools</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Tool</th><th>Fungsi</th><th>URL</th></tr></thead>
+      <tbody>
+        <tr><td class="tc-main">Google Ads</td><td>Platform utama kampanye</td><td class="mono" style="font-size:12px">ads.google.com</td></tr>
+        <tr><td class="tc-main">Keyword Planner</td><td>Research keyword &amp; estimasi CPC</td><td class="mono" style="font-size:12px">Di dalam Google Ads → Tools</td></tr>
+        <tr><td class="tc-main">Google Analytics 4</td><td>Tracking user behavior &amp; konversi</td><td class="mono" style="font-size:12px">analytics.google.com</td></tr>
+        <tr><td class="tc-main">Google Tag Manager</td><td>Manage semua tracking code</td><td class="mono" style="font-size:12px">tagmanager.google.com</td></tr>
+        <tr><td class="tc-main">Search Console</td><td>Monitor performa organik</td><td class="mono" style="font-size:12px">search.google.com/console</td></tr>
+        <tr><td class="tc-main">PageSpeed Insights</td><td>Cek kecepatan landing page</td><td class="mono" style="font-size:12px">pagespeed.web.dev</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<script>
+function go(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+  const sec = document.getElementById('s-' + id);
+  if (sec) sec.classList.add('active');
+  if (el) el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+const CHECKLISTS = {
+  daily: [
+    { id: 'd1', label: 'Cek spend vs budget hari ini', sub: 'Pastikan tidak overspend atau underspend signifikan' },
+    { id: 'd2', label: 'Cek jumlah konversi (form submission) kemarin', sub: 'Bandingkan dengan rata-rata harian' },
+    { id: 'd3', label: 'Alert: ada keyword spend > Rp 500.000 tanpa konversi?', sub: 'Jika ada → pause sementara, investigasi' },
+    { id: 'd4', label: 'Cek apakah semua campaign status "Active"', sub: 'Google kadang pause kampanye karena billing atau policy' },
+  ],
+  weekly: [
+    { id: 'w1', label: 'Download Search Term Report (7 hari)', sub: 'Temukan irrelevant queries → tambah ke negative keywords' },
+    { id: 'w2', label: 'Tambah negative keywords baru dari Search Term Report', sub: 'Target: minimal 5–10 negative keywords baru per minggu' },
+    { id: 'w3', label: 'Review CTR per keyword — pause yang CTR < 0.5%', sub: 'Setelah minimal 500 impressions' },
+    { id: 'w4', label: 'Review CVR per landing page', sub: 'Jika CVR < 2% → flag untuk A/B test' },
+    { id: 'w5', label: 'Cek Quality Score semua keyword', sub: 'QS < 5 → perlu perbaikan segera' },
+    { id: 'w6', label: 'Review ad copy performance', sub: 'Mana headline yang paling tinggi CTR?' },
+    { id: 'w7', label: 'Cek search term yang converted tapi belum jadi keyword', sub: 'Tambahkan sebagai keyword baru (exact match)' },
+    { id: 'w8', label: 'Update laporan performa ke tim/atasan', sub: 'Impressions, Clicks, Conversions, CPL minggu ini' },
+  ],
+  monthly: [
+    { id: 'm1', label: 'Full Location Audit', sub: 'Compare CPL per kota → adjust bid geografis' },
+    { id: 'm2', label: 'Full Device Audit', sub: 'Compare CVR Desktop vs Mobile → update bid device' },
+    { id: 'm3', label: 'Ad Schedule Audit', sub: 'Analisis jam dan hari yang convert → update schedule' },
+    { id: 'm4', label: 'Budget Reallocation Review', sub: 'Pindahkan budget dari kampanye underperform ke overperform' },
+    { id: 'm5', label: 'Competitor Auction Insights Review', sub: 'Siapa kompetitor utama? Bagaimana impression share mereka?' },
+    { id: 'm6', label: 'Landing Page Speed Check', sub: 'Run Google PageSpeed Insights → target < 3 detik di mobile' },
+    { id: 'm7', label: 'Keyword Portfolio Review', sub: 'Hapus keyword yang tidak pernah convert dalam 60 hari' },
+    { id: 'm8', label: 'Review apakah siap scale?', sub: 'Cek scaling decision tree — semua syarat terpenuhi?' },
+    { id: 'm9', label: 'Monthly report lengkap ke management', sub: 'CPL, total leads, quality leads, budget utilization, rekomendasi' },
+  ],
+  golive: [
+    { id: 'g1',  label: 'Conversion tracking verified (status: Recording)', sub: 'Wajib. Jangan launch tanpa ini.' },
+    { id: 'g2',  label: 'Semua negative keywords sudah dipasang', sub: 'Minimal 25–30 negative keywords dari master list' },
+    { id: 'g3',  label: 'Landing page load time < 3 detik', sub: 'Cek dengan PageSpeed Insights' },
+    { id: 'g4',  label: 'Form berfungsi dan ada field "Nama Perusahaan"', sub: 'Test submit form manual' },
+    { id: 'g5',  label: 'Thank you page ada setelah form submit', sub: 'Conversion tag terpasang di thank you page' },
+    { id: 'g6',  label: 'Ad copy include keyword utama di Headline 1', sub: 'Quality Score akan lebih tinggi' },
+    { id: 'g7',  label: 'Semua ad extensions aktif (sitelink, callout, call)', sub: 'Minimal 4 jenis extensions' },
+    { id: 'g8',  label: 'Bid adjustments sudah diset (device, geo, schedule)', sub: 'Sesuai panduan di section Targeting' },
+    { id: 'g9',  label: 'Budget harian diset per campaign (bukan total)', sub: 'Pisah per campaign agar bisa dikontrol' },
+    { id: 'g10', label: 'Bidding strategy: Manual CPC untuk awal', sub: 'Bukan Smart Bidding sebelum ada data konversi' },
+    { id: 'g11', label: 'URL Tracking aktif (auto-tagging: Yes)', sub: 'Di Account Settings → Auto-tagging' },
+    { id: 'g12', label: 'Google Analytics 4 linked ke Google Ads', sub: 'Verify di Google Ads → Tools → Linked Accounts' },
+  ],
+};
+
+const SVG_CHECK = `<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="oklch(12% 0.014 260)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+function renderChecklist(containerId, items) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = items.map(item => {
+    const done = localStorage.getItem('chk_' + item.id) === '1';
+    return `<div class="check-item${done ? ' done' : ''}" onclick="toggleCheck('${item.id}',this)">
+      <div class="check-box">${SVG_CHECK}</div>
+      <div>
+        <div class="ci-label">${item.label}</div>
+        ${item.sub ? `<div class="ci-sub">${item.sub}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleCheck(id, el) {
+  el.classList.toggle('done');
+  localStorage.setItem('chk_' + id, el.classList.contains('done') ? '1' : '0');
+}
+
+['daily','weekly','monthly','golive'].forEach(k => renderChecklist('cl-' + k, CHECKLISTS[k]));
+</script>
+</body>
+</html>
