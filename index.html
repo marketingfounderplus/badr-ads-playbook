@@ -538,6 +538,11 @@ tbody tr:last-child td { border-bottom: none; }
     <div class="sb-item" onclick="go('sop',this)">SOP &amp; Checklist <span class="sb-chip">SOP</span></div>
     <div class="sb-item" onclick="go('ref',this)">Quick Reference</div>
   </div>
+
+  <div class="sb-group">
+    <span class="sb-label">AI Tools</span>
+    <div class="sb-item" onclick="go('tips',this)">Tips &amp; Trik AI <span class="sb-chip" style="background:var(--bl)">AI</span></div>
+  </div>
 </nav>
 
 <!-- ═══ MAIN ═════════════════════════════════════════════════════ -->
@@ -1092,6 +1097,238 @@ tbody tr:last-child td { border-bottom: none; }
         <tr><td class="tm">PageSpeed Insights</td><td>Cek kecepatan landing page</td><td class="mono">pagespeed.web.dev</td></tr>
       </tbody>
     </table>
+  </div>
+</section>
+
+<!-- ═════════════════════════════ TIPS & TRIK ════════════════════ -->
+<section class="sec" id="s-tips">
+  <div class="ph">
+    <div class="ph-eye">AI Tools — 01</div>
+    <h1>Tips &amp; Trik AI</h1>
+    <p class="lead">Claude dan OpenCode bisa jadi asisten Google Ads yang powerful — dari analisis data sampai generate copy. Ini cara pakainya secara konkret.</p>
+  </div>
+
+  <div class="callout co-bl">
+    <span><strong>Prinsip:</strong> AI tidak menggantikan judgment kamu, tapi memangkas waktu kerja repetitif 60–80%. Analisis Search Term Report yang biasa makan 1 jam bisa selesai dalam 3 menit.</span>
+  </div>
+
+  <h2 class="sh"><span class="sh-badge" style="background:var(--bl)">01</span> Use Cases Harian</h2>
+  <div class="g3">
+    <div class="card cb">
+      <span class="clabel">Analisis Data</span>
+      <ul>
+        <li>Paste Search Term Report → minta Claude identifikasi negative keywords</li>
+        <li>Paste metrik campaign → minta diagnosis &amp; rekomendasi</li>
+        <li>Upload CSV export Google Ads → minta ringkasan performa</li>
+      </ul>
+    </div>
+    <div class="card cg">
+      <span class="clabel">Generate Copy</span>
+      <ul>
+        <li>Buat 15 variasi RSA headline sesuai brand voice Badr</li>
+        <li>Tulis 4 description variations untuk A/B test</li>
+        <li>Generate landing page hero copy yang match keyword</li>
+      </ul>
+    </div>
+    <div class="card co">
+      <span class="clabel">Research &amp; Strategi</span>
+      <ul>
+        <li>Expand keyword list dari seed keywords</li>
+        <li>Riset pain point per industri target</li>
+        <li>Analisis ad copy kompetitor yang di-screenshot</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="clabel" style="color:var(--ink-3)">Reporting</span>
+      <ul>
+        <li>Tulis narasi laporan mingguan dari raw data</li>
+        <li>Buat rekomendasi action item dari data metrik</li>
+        <li>Format data untuk presentasi ke management</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="clabel" style="color:var(--ink-3)">Quality Check</span>
+      <ul>
+        <li>Review ad copy sebelum publish</li>
+        <li>Cek apakah landing page copy align dengan keyword</li>
+        <li>Audit negative keyword list dari blind spot</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="clabel" style="color:var(--ink-3)">Otomasi OpenCode</span>
+      <ul>
+        <li>Parse CSV export → auto-generate laporan HTML</li>
+        <li>Script monitoring budget harian</li>
+        <li>Auto-format data untuk Google Sheets</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sh"><span class="sh-badge" style="background:var(--bl)">02</span> Prompt Templates — Copy &amp; Paste</h2>
+
+  <h3 class="subh">Analisis Search Term Report</h3>
+  <div class="terminal">
+    <div class="t-bar"><div class="d"></div><div class="d"></div><div class="d"></div></div>
+    <div class="t-code"><span class="ck">Prompt:</span>
+Ini adalah Search Term Report Google Ads Badr Interactive minggu ini:
+[paste data di sini]
+
+Badr Interactive adalah software house enterprise yang target klien
+perusahaan besar (Pertamina, Astra, BUMN, Kementerian). Budget ads
+sangat terbatas (Rp 10jt/bulan).
+
+Tolong:
+1. Identifikasi semua search term yang tidak relevan untuk di-exclude
+2. Identifikasi search term yang performing baik untuk dijadikan exact match keyword
+3. Berikan rekomendasi 10 negative keywords baru
+4. Flagging search term yang mengindikasikan intent rendah (UMKM, freelance, dll)</div>
+  </div>
+
+  <h3 class="subh">Generate RSA Headlines</h3>
+  <div class="terminal">
+    <div class="t-bar"><div class="d"></div><div class="d"></div><div class="d"></div></div>
+    <div class="t-code"><span class="ck">Prompt:</span>
+Buat 15 variasi headline Google Ads RSA untuk Badr Interactive.
+
+Konteks:
+- Software house enterprise, 11 tahun, 350+ proyek
+- Klien: Pertamina, Astra, BPOM, Kementerian Keuangan
+- Target audience: IT Manager / CTO di perusahaan &gt;200 karyawan
+- Target proyek: Rp 100–500 juta
+- Keyword target: [masukkan keyword]
+
+Rules:
+- Maksimal 30 karakter per headline
+- Tidak ada kata "murah", "terjangkau", "gratis"
+- Harus ada unsur kepercayaan atau bukti
+- Beberapa harus menyebut skala project untuk filter
+- Tone: profesional, tegas, tidak bertele-tele</div>
+  </div>
+
+  <h3 class="subh">Analisis Metrik &amp; Rekomendasi</h3>
+  <div class="terminal">
+    <div class="t-bar"><div class="d"></div><div class="d"></div><div class="d"></div></div>
+    <div class="t-code"><span class="ck">Prompt:</span>
+Ini data performa Google Ads Badr Interactive minggu ini:
+- Total spend: [Rp X]
+- Impressions: [X]
+- Clicks: [X] | CTR: [X%]
+- Conversions: [X] | CVR: [X%]
+- CPL: [Rp X]
+- Top keywords by spend: [list]
+
+Target KPI: CTR &gt;3%, CVR &gt;3%, CPL &lt;Rp 2jt, budget Rp 333rb/hari
+
+Berikan:
+1. Diagnosis singkat kondisi campaign
+2. 3 action item prioritas minggu ini
+3. Flag apakah ada yang perlu di-pause segera</div>
+  </div>
+
+  <h3 class="subh">Tulis Laporan Mingguan</h3>
+  <div class="terminal">
+    <div class="t-bar"><div class="d"></div><div class="d"></div><div class="d"></div></div>
+    <div class="t-code"><span class="ck">Prompt:</span>
+Tulis laporan performa Google Ads Badr Interactive minggu [tanggal].
+
+Data:
+[paste data mentah di sini]
+
+Format laporan:
+- Ringkasan eksekutif (2-3 kalimat)
+- Highlight positif minggu ini
+- Masalah yang ditemukan
+- Action yang sudah diambil
+- Rencana minggu depan
+
+Tone: profesional, ringkas. Pembaca: Marketing Manager Badr.</div>
+  </div>
+
+  <h3 class="subh">OpenCode — Analisis File CSV</h3>
+  <div class="terminal">
+    <div class="t-bar"><div class="d"></div><div class="d"></div><div class="d"></div></div>
+    <div class="t-code"><span class="ck"># Di terminal, dengan OpenCode CLI:</span>
+opencode
+
+<span class="cv"># Setelah masuk ke OpenCode, attach file dan ketik:</span>
+Ini adalah export Search Term Report dari Google Ads (file terlampir).
+Analisis dan buat daftar:
+1. Negative keywords yang harus ditambahkan (format: satu per baris, siap di-copy ke Google Ads)
+2. Keywords baru yang layak ditambahkan sebagai exact match
+3. Summary singkat 3 poin temuan utama</div>
+  </div>
+
+  <h2 class="sh"><span class="sh-badge" style="background:var(--bl)">03</span> Skills yang Tersedia</h2>
+  <div class="callout co-bl">
+    <span>Skills ini bisa dipakai di Claude Code atau OpenCode dengan mengetik <strong>/nama-skill</strong> di prompt. Setiap skill punya framework dan prompt system tersendiri yang lebih dalam dari prompt biasa.</span>
+  </div>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Skill</th><th>Kapan Pakai</th><th>Cara Invoke</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="tm">performance-marketing-assistant</td>
+          <td>Analisis data ads, keputusan scaling, troubleshooting kampanye, baca metrik</td>
+          <td class="mono">/performance-marketing-assistant</td>
+        </tr>
+        <tr>
+          <td class="tm">keyword-trend-deep-research</td>
+          <td>Riset keyword baru, analisis tren industri, seasonal patterns, content clustering</td>
+          <td class="mono">/keyword-trend-deep-research</td>
+        </tr>
+        <tr>
+          <td class="tm">copywriting-formula-master</td>
+          <td>Buat ad copy, headline RSA, description, CTA, landing page copy</td>
+          <td class="mono">/copywriting-formula-master</td>
+        </tr>
+        <tr>
+          <td class="tm">landing-page-optimization</td>
+          <td>Review &amp; improve landing page, A/B test framework, conversion rate optimization</td>
+          <td class="mono">/landing-page-optimization</td>
+        </tr>
+        <tr>
+          <td class="tm">competitor-innovation-analysis</td>
+          <td>Analisis kompetitor ads, temukan gap, buat differentiator messaging</td>
+          <td class="mono">/competitor-innovation-analysis</td>
+        </tr>
+        <tr>
+          <td class="tm">analytics-measurement-system</td>
+          <td>Setup KPI framework, dashboard metrics, measurement plan untuk kampanye</td>
+          <td class="mono">/analytics-measurement-system</td>
+        </tr>
+        <tr>
+          <td class="tm">meta-ads-strategy</td>
+          <td>Paralel dengan Google Ads — kalau mau extend ke Meta Ads juga</td>
+          <td class="mono">/meta-ads-strategy</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sh"><span class="sh-badge" style="background:var(--bl)">04</span> Workflow Harian dengan AI</h2>
+  <div class="steps">
+    <div class="step"><div class="sn" style="background:var(--bl-l);color:var(--bl)">1</div><div class="sb">
+      <h4>Senin Pagi — Weekly Review (15 menit)</h4>
+      <p>Download Search Term Report → paste ke Claude dengan prompt analisis → terapkan negative keywords baru → review CTR &amp; CVR dengan prompt diagnosis metrik.</p>
+    </div></div>
+    <div class="step"><div class="sn" style="background:var(--bl-l);color:var(--bl)">2</div><div class="sb">
+      <h4>Mid-week — Copy Refresh (30 menit)</h4>
+      <p>Jika CTR mulai drop, gunakan skill <span class="mono" style="background:var(--bl-l);padding:1px 6px;border-radius:4px;color:oklch(34% 0.18 258)">/copywriting-formula-master</span> untuk generate headline &amp; description baru. A/B test 2 variasi sekaligus.</p>
+    </div></div>
+    <div class="step"><div class="sn" style="background:var(--bl-l);color:var(--bl)">3</div><div class="sb">
+      <h4>Jumat — Laporan Mingguan (10 menit)</h4>
+      <p>Paste data performa ke Claude dengan prompt laporan → edit seperlunya → kirim ke manager. Hemat 45 menit vs nulis manual.</p>
+    </div></div>
+    <div class="step"><div class="sn" style="background:var(--bl-l);color:var(--bl)">4</div><div class="sb">
+      <h4>Bulanan — Deep Research</h4>
+      <p>Gunakan <span class="mono" style="background:var(--bl-l);padding:1px 6px;border-radius:4px;color:oklch(34% 0.18 258)">/keyword-trend-deep-research</span> untuk ekspansi keyword &amp; identifikasi peluang keyword baru di industri target (Logistik, Healthcare, Government, Fintech).</p>
+    </div></div>
+  </div>
+
+  <div class="card cy" style="margin-top:24px">
+    <span class="clabel" style="color:oklch(38% 0.16 85)">Catatan Penting</span>
+    <p>AI tidak bisa akses langsung ke akun Google Ads kamu. Semua analisis dilakukan dengan cara <strong>paste data</strong> ke Claude/OpenCode. Untuk otomasi penuh (baca data langsung dari API), perlu setup tambahan via n8n atau script Python — bisa dikonsultasikan terpisah.</p>
   </div>
 </section>
 
