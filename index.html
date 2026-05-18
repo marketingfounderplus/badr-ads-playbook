@@ -543,6 +543,11 @@ tbody tr:last-child td { border-bottom: none; }
     <span class="sb-label">AI Tools</span>
     <div class="sb-item" onclick="go('tips',this)">Tips &amp; Trik AI <span class="sb-chip" style="background:var(--bl)">AI</span></div>
   </div>
+
+  <div class="sb-group">
+    <span class="sb-label">Tim Badr</span>
+    <div class="sb-item" onclick="go('divisi',this)">Strategi Per Divisi <span class="sb-chip" style="background:var(--or)">3</span></div>
+  </div>
 </nav>
 
 <!-- ═══ MAIN ═════════════════════════════════════════════════════ -->
@@ -1329,6 +1334,233 @@ Analisis dan buat daftar:
   <div class="card cy" style="margin-top:24px">
     <span class="clabel" style="color:oklch(38% 0.16 85)">Catatan Penting</span>
     <p>AI tidak bisa akses langsung ke akun Google Ads kamu. Semua analisis dilakukan dengan cara <strong>paste data</strong> ke Claude/OpenCode. Untuk otomasi penuh (baca data langsung dari API), perlu setup tambahan via n8n atau script Python — bisa dikonsultasikan terpisah.</p>
+  </div>
+</section>
+
+<!-- ═════════════════════════════ DIVISI ══════════════════════════ -->
+<section class="sec" id="s-divisi">
+  <div class="ph">
+    <div class="ph-eye">Tim Badr — 01</div>
+    <h1>Strategi Per Divisi</h1>
+    <p class="lead">Google Ads bukan cuma urusan Marketing. Supaya lead yang datang bisa jadi kontrak, Sales, Marketing, dan Business Development harus bermain di satu sistem yang sama.</p>
+  </div>
+
+  <div class="callout co-or">
+    <span><strong>Prinsip Alignment:</strong> Satu funnel, tiga pemain. Kalau Marketing kejar CTR tapi Sales bilang lead-nya sampah, ada yang putus di tengah. Tiga divisi harus sepakat soal satu hal: definisi "qualified lead".</span>
+  </div>
+
+  <!-- SALES -->
+  <h2 class="sh"><span class="sh-badge" style="background:var(--gr)">Sales</span> 6 Hacks untuk Tim Sales</h2>
+  <div class="callout co-gr">
+    <span>Lead dari Google Ads berbeda dengan referral. Mereka belum kenal Badr — yang mereka tahu hanya <em>satu kalimat di iklan</em>. Tugas Sales: jadikan kalimat itu titik awal percakapan.</span>
+  </div>
+  <div class="g3">
+    <div class="card cg">
+      <span class="clabel">Response Time &lt; 5 Menit</span>
+      <p>Leads dari search ads adalah <strong>hot intent</strong> — mereka baru saja ketik kebutuhan mereka di Google. Telat 30 menit, probabilitas kontak turun 21x. Setup notif WA/email ke tim Sales segera setelah form submit.</p>
+    </div>
+    <div class="card cg">
+      <span class="clabel">Mirror Ad Messaging di Opening</span>
+      <p>Kalau iklannya bilang <em>"Custom ERP untuk Enterprise"</em>, buka dengan: <em>"Halo Pak [nama], saya dari Badr — tadi Bapak cari solusi ERP untuk enterprise ya?"</em>. Konsistensi pesan = kepercayaan langsung.</p>
+    </div>
+    <div class="card cg">
+      <span class="clabel">Kualifikasi dengan BANT+</span>
+      <p>Budget, Authority, Need, Timeline — tambah <strong>Scale</strong> (ukuran perusahaan) dan <strong>Source</strong> (dari keyword apa). Leads yang datang dari keyword "enterprise software" lebih warm daripada "aplikasi murah".</p>
+    </div>
+    <div class="card cg">
+      <span class="clabel">Catat Source di CRM</span>
+      <p>Setiap lead harus dicatat <em>dari campaign/keyword mana</em>. Ini bukan formalitas — ini data yang Marketing butuhkan untuk tahu mana keyword yang generate lead berkualitas vs sampah.</p>
+    </div>
+    <div class="card cg">
+      <span class="clabel">Objection Handling dari Ad Copy</span>
+      <p>Pahami ad copy yang sedang berjalan. Kalau iklan klaim "350+ proyek enterprise", siapkan 2–3 case study yang relevan. Prospect akan langsung tanya buktinya.</p>
+    </div>
+    <div class="card cg">
+      <span class="clabel">Feedback Loop ke Marketing</span>
+      <p>Tiap Senin: kasih tahu Marketing <strong>3 hal</strong> — industri mana yang paling qualified, objection yang paling sering muncul, dan lead mana yang jelas tidak cocok. Ini lebih berharga dari data CTR mana pun.</p>
+    </div>
+  </div>
+
+  <div class="kpis" style="margin-top:8px">
+    <div class="kpi" style="border-color:var(--gr)"><div class="kv">&lt; 5 mnt</div><div class="kl">Target response time</div></div>
+    <div class="kpi" style="border-color:var(--gr)"><div class="kv">&gt; 40%</div><div class="kl">Lead-to-meeting rate</div></div>
+    <div class="kpi" style="border-color:var(--gr)"><div class="kv">100%</div><div class="kl">Lead tercatat di CRM dengan source</div></div>
+    <div class="kpi" style="border-color:var(--gr)"><div class="kv">1x/minggu</div><div class="kl">Feedback ke Marketing</div></div>
+  </div>
+
+  <!-- MARKETING -->
+  <h2 class="sh" style="margin-top:48px"><span class="sh-badge" style="background:var(--bl)">Marketing</span> 6 Hacks untuk Tim Marketing</h2>
+  <div class="callout co-bl">
+    <span>Marketing bukan cuma soal impression dan klik. KPI utama tim Marketing di Google Ads Badr adalah: <strong>CPL Qualified</strong> — biaya per lead yang benar-benar lolos kualifikasi Sales.</span>
+  </div>
+  <div class="g3">
+    <div class="card cb">
+      <span class="clabel">Optimasi Berdasarkan Lead Quality, Bukan Kuantitas</span>
+      <p>10 leads qualified lebih baik dari 50 leads sampah. Gunakan feedback Sales untuk pause keyword yang generate traffic tapi tidak menghasilkan meeting. Volume bukan tujuan.</p>
+    </div>
+    <div class="card cb">
+      <span class="clabel">UTM Discipline Wajib</span>
+      <p>Setiap campaign, ad group, dan iklan harus punya UTM yang konsisten. Format: <code style="background:var(--bl-l);padding:1px 5px;border-radius:3px;color:oklch(34% 0.18 258)">utm_source=google&amp;utm_campaign=brand&amp;utm_term={keyword}</code>. Ini satu-satunya cara track keyword mana yang generate kontrak, bukan hanya lead.</p>
+    </div>
+    <div class="card cb">
+      <span class="clabel">Landing Page = Eksperimen Permanen</span>
+      <p>Setiap 2 minggu, ubah satu elemen landing page berdasarkan objection yang paling sering muncul di Sales. Kalau prospect sering tanya soal pengalaman di industri tertentu — tambahkan case study itu ke halaman.</p>
+    </div>
+    <div class="card cb">
+      <span class="clabel">Budget Shift Dinamis per Industri</span>
+      <p>Kalau BD melaporkan deal dari Logistik sedang panas, naikkan budget campaign "Logistik". Budget harus mengikuti conversion rate industri — bukan dibagi rata.</p>
+    </div>
+    <div class="card cb">
+      <span class="clabel">Negative Keyword Mingguan</span>
+      <p>Buka Search Term Report setiap Senin. Tambah negative keywords dari: istilah UMKM, freelance, murah, gratis, dan search term industri yang Sales konfirmasi tidak pernah convert.</p>
+    </div>
+    <div class="card cb">
+      <span class="clabel">Sinkron Messaging dengan BD</span>
+      <p>Value proposition di iklan harus sama dengan yang BD pakai di proposal. Kalau BD jualan "ROI dalam 6 bulan", iklan juga harus menyebut itu. Inconsistency di tengah funnel membunuh kepercayaan.</p>
+    </div>
+  </div>
+
+  <div class="kpis" style="margin-top:8px">
+    <div class="kpi" style="border-color:var(--bl)"><div class="kv">&lt; Rp 2jt</div><div class="kl">Target CPL qualified</div></div>
+    <div class="kpi" style="border-color:var(--bl)"><div class="kv">&gt; 3%</div><div class="kl">Landing page CVR</div></div>
+    <div class="kpi" style="border-color:var(--bl)"><div class="kv">1x/2 minggu</div><div class="kl">Iterasi landing page</div></div>
+    <div class="kpi" style="border-color:var(--bl)"><div class="kv">100%</div><div class="kl">Leads punya UTM source</div></div>
+  </div>
+
+  <!-- BUSINESS DEVELOPMENT -->
+  <h2 class="sh" style="margin-top:48px"><span class="sh-badge" style="background:var(--or)">BD</span> 6 Hacks untuk Tim Business Development</h2>
+  <div class="callout co-or">
+    <span>BD adalah ujung tombak yang mengubah lead menjadi kontrak. Data yang BD punya — industri mana yang close, value berapa, objection apa — adalah input paling berharga untuk seluruh sistem iklan.</span>
+  </div>
+  <div class="g3">
+    <div class="card co">
+      <span class="clabel">Proposal Harus Mirror Ad &amp; Landing Page</span>
+      <p>Prospect pertama kali lihat iklan Badr, lalu landing page, lalu proposal. Kalau bahasa proposalnya berbeda drastis, kepercayaan retak. Pakai framing yang sama — bahkan kutip poin yang mereka baca di website.</p>
+    </div>
+    <div class="card co">
+      <span class="clabel">Kenali Keyword Sumber Lead</span>
+      <p>Minta Sales catat dari search term apa lead ini datang. Lead dari "custom ERP Pertamina" punya ekspektasi berbeda dengan "software manajemen aset". Sesuaikan opening proposal dan case study yang kamu tampilkan.</p>
+    </div>
+    <div class="card co">
+      <span class="clabel">Lapor Win/Loss per Industri ke Marketing</span>
+      <p>Tiap bulan: beri tahu Marketing industri mana yang close rate-nya tinggi bulan ini. Ini langsung diterjemahkan jadi budget shift. Deal kamu yang menang hari ini menentukan keyword mana yang dapat budget bulan depan.</p>
+    </div>
+    <div class="card co">
+      <span class="clabel">Follow-up Sequence Berdasarkan Funnel Stage</span>
+      <p>Lead dari form ads = MOFU. Jangan langsung kirim proposal harga. Langkah: (1) discovery call, (2) needs assessment, (3) proposal + case study relevan, (4) follow-up 3 hari, (5) decision timeline check.</p>
+    </div>
+    <div class="card co">
+      <span class="clabel">Bangun Urgency dengan Data Proyek</span>
+      <p>Badr punya 350+ proyek dan 11 tahun pengalaman — gunakan ini. Bukan sekadar disebut, tapi konkret: <em>"Kami baru selesai sistem serupa untuk perusahaan logistik 2.000 karyawan bulan lalu."</em> Spesifisitas = kredibilitas.</p>
+    </div>
+    <div class="card co">
+      <span class="clabel">Identifikasi Persona yang Paling Cepat Close</span>
+      <p>Setelah 3 bulan, pola akan terlihat: IT Manager dari BUMN close lebih cepat dari procurement perusahaan swasta? Atau sebaliknya? Bagi insight ini ke Marketing untuk refine targeting audience.</p>
+    </div>
+  </div>
+
+  <div class="kpis" style="margin-top:8px">
+    <div class="kpi" style="border-color:var(--or)"><div class="kv">&gt; 25%</div><div class="kl">Meeting-to-proposal rate</div></div>
+    <div class="kpi" style="border-color:var(--or)"><div class="kv">&gt; 30%</div><div class="kl">Proposal-to-close rate</div></div>
+    <div class="kpi" style="border-color:var(--or)"><div class="kl">Win/loss report ke Marketing</div><div class="kv">1x/bulan</div></div>
+    <div class="kpi" style="border-color:var(--or)"><div class="kv">Rp 150jt+</div><div class="kl">Target avg deal value</div></div>
+  </div>
+
+  <!-- ALIGNMENT -->
+  <h2 class="sh" style="margin-top:48px"><span class="sh-badge" style="background:var(--rd)">Sync</span> The War Room — Ritual Alignment Mingguan</h2>
+
+  <div class="callout co-rd">
+    <span>30 menit setiap Senin pagi. Tiga divisi, satu meeting. Tanpa ritual ini, data ads dan data Sales hidup di silo berbeda — dan anggaran Rp 10jt/bulan terbuang tanpa insight apapun.</span>
+  </div>
+
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>Agenda</th>
+          <th>Siapa Bawa</th>
+          <th>Output</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Review performa ads minggu lalu</strong></td>
+          <td>Marketing</td>
+          <td>CTR, CVR, CPL, jumlah leads per campaign</td>
+        </tr>
+        <tr>
+          <td><strong>Lead quality report</strong></td>
+          <td>Sales</td>
+          <td>Berapa yang qualified, industri apa, objection apa yang sering muncul</td>
+        </tr>
+        <tr>
+          <td><strong>Pipeline update</strong></td>
+          <td>BD</td>
+          <td>Leads yang sedang di-follow, industri mana yang paling hot, deal yang close/lost</td>
+        </tr>
+        <tr>
+          <td><strong>Keputusan bersama</strong></td>
+          <td>Semua</td>
+          <td>Keyword/campaign mana yang dinaikkan, dimatikan, atau diubah messagingnya</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sh" style="margin-top:40px"><span class="sh-badge" style="background:oklch(40% 0.12 280)">KPI</span> Full-Funnel Metric — Milik Bersama</h2>
+
+  <div class="g2" style="gap:12px">
+    <div class="card" style="border-top:3px solid var(--gr)">
+      <span class="clabel" style="color:var(--gr)">Top of Funnel (Marketing)</span>
+      <ul>
+        <li>Impressions &amp; Impression Share</li>
+        <li>CTR (target: &gt;3%)</li>
+        <li>Cost per Click (CPC)</li>
+        <li>Total spend vs budget</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--bl)">
+      <span class="clabel" style="color:var(--bl)">Mid Funnel (Marketing + Sales)</span>
+      <ul>
+        <li>Conversion rate landing page (target: &gt;3%)</li>
+        <li>CPL (target: &lt;Rp 2jt)</li>
+        <li>Jumlah leads per minggu</li>
+        <li>Lead-to-meeting rate (target: &gt;40%)</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--or)">
+      <span class="clabel" style="color:var(--or)">Bottom Funnel (Sales + BD)</span>
+      <ul>
+        <li>Meeting-to-proposal rate</li>
+        <li>Proposal-to-close rate</li>
+        <li>Average deal value</li>
+        <li>Close rate per industri / keyword source</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--rd)">
+      <span class="clabel" style="color:var(--rd)">North Star (Semua Divisi)</span>
+      <ul>
+        <li><strong>Revenue per Rp 1 ads spend</strong></li>
+        <li>Cost per Signed Contract</li>
+        <li>Kontrak baru dari channel Google Ads</li>
+        <li>ROAS (Return on Ad Spend) aktual</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="steps" style="margin-top:32px">
+    <div class="step"><div class="sn" style="background:var(--gr-l);color:var(--gr)">1</div><div class="sb">
+      <h4>Sepakati definisi "qualified lead" — tertulis</h4>
+      <p>Contoh Badr: perusahaan &gt;200 karyawan, punya budget proyek &gt;Rp 50jt, decision maker terlibat langsung, butuh custom software (bukan off-the-shelf). Tanpa definisi ini, Sales dan Marketing akan selalu perang soal kualitas lead.</p>
+    </div></div>
+    <div class="step"><div class="sn" style="background:var(--bl-l);color:var(--bl)">2</div><div class="sb">
+      <h4>Satu dashboard, tiga divisi bisa akses</h4>
+      <p>Google Looker Studio (gratis) connect ke Google Ads + Google Sheets CRM. Marketing isi data ads, Sales isi data lead quality, BD isi data deal. Satu view = satu sumber kebenaran.</p>
+    </div></div>
+    <div class="step"><div class="sn" style="background:var(--or-l);color:var(--or)">3</div><div class="sb">
+      <h4>Messaging audit setiap bulan</h4>
+      <p>Bandingkan: headline iklan yang aktif vs opening script Sales vs framing proposal BD. Ketiganya harus satu napas. Kalau ada gap, update yang paling lemah — biasanya landing page atau proposal lama yang tidak pernah direvisi.</p>
+    </div></div>
   </div>
 </section>
 
